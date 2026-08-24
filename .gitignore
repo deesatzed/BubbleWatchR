@@ -1,0 +1,10 @@
+node_modules/
+.DS_Store
+dist/
+.data/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+playwright-report/
+test-results/
+goal_export_text.txt

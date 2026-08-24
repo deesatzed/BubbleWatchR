@@ -1,0 +1,24 @@
+{
+  "name": "decision-covenant-foundation",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0",
+    "npm": ">=11.0.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "node scripts/lint.mjs",
+    "test": "npm run build && node --test dist/tests/unit.test.js",
+    "test:e2e": "npm run build && node scripts/run-e2e.mjs",
+    "verify:exports": "node scripts/verify-exports.mjs",
+    "verify:core": "npm run lint && npm run typecheck && npm test && npm run test:e2e && npm run verify:exports && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "playwright": "^1.55.0",
+    "typescript": "^5.9.0"
+  }
+}
