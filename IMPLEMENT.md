@@ -1,4 +1,4 @@
-# IMPLEMENT.md — Decision Covenant Foundation
+# IMPLEMENT.md — Decision Covenant
 
 ## Selected stack
 
@@ -15,6 +15,9 @@
 apps/web/             HTTP server, routes, and accessible HTML
 packages/domain/      covenant types, validation, and lifecycle operations
 packages/audit/       SQLite schema, audit events, replay, and hashing
+packages/snapshots/   immutable snapshot persistence and CSV import
+packages/calculations/ deterministic portfolio calculations
+packages/triggers/      versioned metrics and deterministic state transitions
 packages/export/      JSON and Markdown serializers
 tests/                unit and browser workflow tests
 ```
@@ -22,9 +25,9 @@ tests/                unit and browser workflow tests
 ## Storage
 
 The default application database is `.data/decision-covenant.sqlite`. Tests
-use unique temporary database paths. The schema stores versioned covenant
-records as JSON plus relational audit metadata; no portfolio data exists in
-this goal.
+use unique temporary database paths. Snapshot rows are immutable JSON records
+linked to their source and `asOf` timestamp. Existing covenant and audit tables
+remain compatible with the foundation schema.
 
 ## Verification commands
 
@@ -36,6 +39,8 @@ npm test
 npm run test:e2e
 npm run build
 npm run verify:core
+npm run verify:calculations
+npm run verify:triggers
 ```
 
 `test:e2e` installs the development Chromium browser into

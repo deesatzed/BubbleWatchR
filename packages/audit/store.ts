@@ -54,6 +54,52 @@ export function openDatabase(path = ".data/decision-covenant.sqlite"): DatabaseS
     );
     CREATE INDEX IF NOT EXISTS audit_events_entity_idx
       ON audit_events(entity_type, entity_id, occurred_at);
+    CREATE TABLE IF NOT EXISTS portfolio_snapshots (
+      id TEXT PRIMARY KEY,
+      as_of TEXT NOT NULL,
+      portfolio_name TEXT NOT NULL,
+      source TEXT NOT NULL,
+      source_reference TEXT,
+      data TEXT NOT NULL,
+      created_at TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS snapshot_import_attempts (
+      id TEXT PRIMARY KEY,
+      source_reference TEXT,
+      raw_data TEXT NOT NULL,
+      errors TEXT NOT NULL,
+      accepted_snapshot_id TEXT,
+      created_at TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS portfolio_snapshots_as_of_idx
+      ON portfolio_snapshots(portfolio_name, as_of, created_at);
+    CREATE TABLE IF NOT EXISTS trigger_definitions (
+      id TEXT PRIMARY KEY,
+      covenant_id TEXT NOT NULL,
+      covenant_version INTEGER NOT NULL,
+      trigger_version INTEGER NOT NULL,
+      trigger_type TEXT NOT NULL,
+      data TEXT NOT NULL,
+      created_at TEXT NOT NULL
+    );
+    CREATE UNIQUE INDEX IF NOT EXISTS trigger_definitions_covenant_type_idx
+      ON trigger_definitions(covenant_id, trigger_type);
+    CREATE TABLE IF NOT EXISTS trigger_states (
+      trigger_id TEXT PRIMARY KEY,
+      data TEXT NOT NULL,
+      updated_at TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS trigger_evaluations (
+      id TEXT PRIMARY KEY,
+      trigger_id TEXT NOT NULL,
+      observed_at TEXT NOT NULL,
+      data TEXT NOT NULL,
+      created_at TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS trigger_evaluations_trigger_idx
+      ON trigger_evaluations(trigger_id, observed_at, created_at);
+    CREATE UNIQUE INDEX IF NOT EXISTS trigger_evaluations_trigger_time_idx
+      ON trigger_evaluations(trigger_id, observed_at);
   `);
   return db;
 }

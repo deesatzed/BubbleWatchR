@@ -11,10 +11,12 @@
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "node scripts/lint.mjs",
-    "test": "npm run build && node --test dist/tests/unit.test.js",
+    "test": "npm run build && node --test dist/tests/unit.test.js dist/tests/calculations.test.js dist/tests/triggers.test.js",
     "test:e2e": "npm run build && node scripts/run-e2e.mjs",
     "verify:exports": "node scripts/verify-exports.mjs",
-    "verify:core": "npm run lint && npm run typecheck && npm test && npm run test:e2e && npm run verify:exports && npm run build"
+    "verify:calculations": "npm run build && node scripts/verify-calculations.mjs",
+    "verify:triggers": "npm run build && node scripts/verify-triggers.mjs",
+    "verify:core": "npm run lint && npm run typecheck && npm test && npm run test:e2e && npm run verify:exports && npm run verify:calculations && npm run verify:triggers && npm run build"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

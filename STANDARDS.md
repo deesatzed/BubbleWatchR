@@ -17,6 +17,18 @@ These are the non-negotiable standards for the active foundation goal.
   chained SHA-256 payload hash.
 - Exports include the source covenant version and its audit events.
 - User data is stored locally in SQLite and is never transmitted by default.
+- Accepted portfolio snapshots are immutable and retain their `asOf`, source,
+  original inputs, and calculation version.
+- Missing classifications and invalid values remain visible as unknown or
+  invalid; they are never silently converted to zero or a safe default.
+
+## Calculations
+
+- Derived values are deterministic functions of exported inputs and a named
+  calculation version.
+- User-defined AI exposure is not a universal asset classification.
+- Drawdown is labeled as observed arithmetic from a selected reference high,
+  not a forecast, target, or recommendation.
 
 ## Engineering
 
