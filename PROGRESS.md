@@ -94,22 +94,141 @@ Verified during this batch:
   `MachPortRendezvousServer` permission denial before page execution.
 - `git diff --check` — passed.
 
-The next structured-review goal remains explicitly out of scope.
+The structured-review successor is recorded below.
+
+## Structured-review batch — complete — 2026-08-25
+
+The completed trigger contract is preserved in `GOAL_TRIGGERS_COMPLETE.md` and
+the active successor contract is now `GOAL.md`. Implemented so far:
+
+- `packages/reviews/` types and SQLite lifecycle for open, update, complete,
+  list, read, and replay;
+- atomic linked trigger cooldown closure with immutable review audit events;
+- review JSON/Markdown serializers and local API routes;
+- accessible browser form for opening and completing a bounded review;
+- `tests/reviews.test.ts`, browser proof, and `scripts/verify-reviews.mjs`.
+
+Fresh evidence:
+
+- `npm test` — passed; 25 tests passed, 0 failed.
+- `PLAYWRIGHT_BROWSERS_PATH=/private/tmp/bubblereyes-playwright npm run
+  test:e2e` — passed; 4 browser tests passed, 0 failed.
+- `npm run verify:reviews` — passed; generated and inspected
+  `.data/verification-reviews.json` and `.data/verification-reviews.md`.
+
+- Authorized `PLAYWRIGHT_BROWSERS_PATH=/private/tmp/bubblereyes-playwright
+  npm run verify:core` — passed; all aggregate gates passed, including review
+  evidence and final build.
+- Review evidence is UTF-8/JSON text, includes the decision, rationale,
+  linked trigger, versions, and `review.completed`; both artifacts contain no
+  NUL bytes.
+- `git diff --check` — passed.
+
+The structured-review contract is preserved in
+`GOAL_STRUCTURED_REVIEW_COMPLETE.md`. The next implementation is
+hypothetical rebalance simulation and remains unimplemented.
 
 ## Successor
 
-The portfolio snapshot/calculation goal is complete and preserved as
-`GOAL_PORTFOLIO_SNAPSHOTS_COMPLETE.md`. The active goal is now the complete
-seven-trigger policy state engine in `GOAL.md`:
+The foundation, portfolio, seven-trigger, and structured-review goals are
+complete and preserved in their corresponding `GOAL_*_COMPLETE.md` files.
+`TASK_QUEUE.md` now identifies hypothetical rebalance simulation as the active
+successor. No simulation behavior has been added.
 
-1. AI exposure above threshold.
-2. Single-position concentration above threshold.
-3. Trailing drawdown above threshold.
-4. Trailing realized volatility above threshold.
-5. Appreciation-driven concentration.
-6. Scheduled review date.
-7. Covenant review overdue.
+## 2026-08-25 — UX audit and local UI hardening
 
-The trigger schema, formula, timezone, persistence, hysteresis, cooldown, and
-missing-data decisions are recorded in `DECISIONS.md`; focused verification is
-wired through `npm run verify:triggers` and `npm run verify:core`.
+Completed a bounded audit and implementation pass for the actual server-rendered
+web surface. The pre-edit evidence report is preserved in
+`ux-audit-bubbler-eyes-2026-08-25.md`.
+
+Implemented:
+
+- skip link, section navigation, stable section IDs, and useful empty-state
+  links;
+- responsive spacing and two-column snapshot entry at wider widths;
+- semantic visual tokens, stronger focus-visible treatment, touch-sized
+  controls, field guidance, and reduced-motion-safe status transitions;
+- request locking for submissions and action buttons;
+- field-focused error recovery for malformed JSON/CSV;
+- ephemeral success messages that preserve the relevant section after reload.
+
+Verification:
+
+- `npm run lint` — passed;
+- `npm run typecheck` — passed;
+- `npm test` — passed; 25 tests passed, 0 failed;
+- `npm run test:e2e` — passed; 4 browser workflows passed, 0 failed;
+- elevated `npm run verify:core` — passed; all aggregate gates, including
+  Chromium and export evidence, passed;
+- elevated `npm run verify:responsive` — passed; built page verified at 1440,
+  768, and 390 pixels for overflow, wayfinding, target sizing, layout,
+  keyboard skip-link focus, malformed-input recovery focus, success context,
+  back-button navigation, and refresh persistence;
+- `npm run build` — passed;
+- Impeccable detector — passed with no findings;
+- `git diff --check` — passed;
+- local GET smoke check — passed at `http://127.0.0.1:7821/`.
+
+The in-app/extension browser surface was unavailable for direct screenshots and
+viewport measurements in this environment. The report keeps that limitation
+explicit; the repository Chromium workflows remain the functional browser
+evidence.
+
+## 2026-08-25 — Guided decision workspace and variant foundation
+
+Implemented the approved hybrid of guided decision journal and returning-user
+workstation:
+
+- `packages/examples/` now ships four use-case packs and twelve deeply
+  immutable, schema-valid fictional lifecycles. Each pack offers three distinct
+  philosophies with policy text, trigger settings, observations, a bounded
+  recorded review, cooldown, tradeoffs, and may-not-fit guidance.
+- The first-use page now explains the product before personal input, keeps a
+  selected lifecycle inspectable beside its pack and example context, and
+  copies only covenant fields into an editable personal draft.
+- `packages/workspace/summary.ts` projects first-use versus returning state,
+  current policy status, latest observation, condition counts, open reviews,
+  schedule, and the next recordable step. A snapshot-only record now correctly
+  enters workstation mode and has focused regression coverage.
+- Manual observation entry defaults to add/edit/remove position rows with
+  stable IDs and field-focused validation. CSV remains first-class; exact JSON
+  moved under Advanced disclosure.
+- `packages/triggers/presentation.ts` round-trips human units for all seven
+  deterministic trigger types. The UI defaults to guided percentage, date,
+  persistence, cooldown, missing-data, volatility, and overdue-review controls;
+  exact trigger JSON remains available under Advanced disclosure.
+- `packages/variants/` defines a provider-neutral local/OpenRouter contract and
+  safe normalizer for two or three non-persistent variants. It rejects malformed
+  provenance, duplicate IDs, invalid policy/trigger data, and prescriptive
+  action language. No runtime adapter, credential capture, network request, or
+  fabricated model response was added.
+- The visual system is recorded in `DESIGN.md`, the approved north-star and
+  prompt provenance are in `.impeccable/mocks/`, and direct first-use/returning
+  screenshots are in `.impeccable/review/`.
+- The final craft review found and the repair batch fixed historical/disabled
+  condition leakage in the returning summary, browser-timezone conversion of
+  scheduled wall times, repeated returning-user onboarding, the missing mobile
+  first-viewport example action, and system-only typography. Manrope now ships
+  locally with its OFL license and no remote request.
+
+Fresh verification on 2026-08-25:
+
+- `npm_config_cache=/private/tmp/bubblereyes-npm-cache npm ci` — passed; 7
+  packages audited, 0 vulnerabilities.
+- Elevated `PLAYWRIGHT_BROWSERS_PATH=/private/tmp/bubblereyes-playwright npm
+  run verify:core` — passed: lint checked 32 TypeScript files, typecheck passed,
+  38 unit/integration tests passed, 8 Chromium workflows passed, all covenant,
+  calculation, trigger, and review evidence exports passed, and the final build
+  passed.
+- Elevated `npm run verify:responsive` — passed at 1440, 768, and 390 pixels,
+  including document overflow, 44px targets, first keyboard focus, invalid-field
+  recovery, persisted success context, and first-use/returning screenshot
+  capture.
+- The one-time Impeccable anti-pattern detector returned `[]`.
+- `git diff --check` — passed.
+
+Remaining product boundary: Generate variants exposes the honest bundled-only,
+provider-ready state. Runtime local/OpenRouter generation remains a separate
+goal requiring secure credential storage, provenance, redaction, timeout,
+budget, and failure-state proof. Hypothetical rebalance simulation remains the
+active roadmap successor.

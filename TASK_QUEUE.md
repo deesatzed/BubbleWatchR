@@ -8,10 +8,18 @@
    verified by its proof gates.
 3. Complete: deterministic seven-trigger state machine with persistence,
    hysteresis, cooldown, audit, replay, browser workflow, and evidence;
-   governed by `GOAL.md`.
-4. Active successor: structured review workflow.
-5. Then: hypothetical rebalance simulation.
-6. Then: outcome history, security, backup, accessibility, and release proof.
-7. Separate research goal: Infrastructure Commitment Ledger pilot.
-8. Optional integration only after the ledger passes its data, attribution,
+   preserved in `GOAL_TRIGGERS_COMPLETE.md`.
+4. Complete: structured review workflow with bounded user-authored packets,
+   atomic linked cooldown closure, audit, replay, browser proof, and exports;
+   preserved in `GOAL_STRUCTURED_REVIEW_COMPLETE.md`.
+5. Complete: modern guided decision workspace with four packs, twelve complete
+   fictional lifecycles, editable copy-to-draft, returning-state summary,
+   human observation rows, and guided controls for all seven conditions.
+6. Active roadmap successor: hypothetical rebalance simulation.
+7. Optional separately approved product successor: runtime variant generation
+   with interchangeable local and OpenRouter adapters, secure credentials,
+   provenance, budgets, redaction, and failure-state proof.
+8. Then: outcome history, security, backup, accessibility, and release proof.
+9. Separate research goal: Infrastructure Commitment Ledger pilot.
+10. Optional integration only after the ledger passes its data, attribution,
    lead-time, and prospective-value gates.

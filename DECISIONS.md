@@ -88,3 +88,69 @@ persisting the batch. Two or more independent active definitions escalate to
 `escalated_review`; a cooldown still only bypasses for its explicit emergency
 threshold. The aggregate batch is idempotent per trigger and observation
 timestamp and commits its state projections and audit events atomically.
+
+## 2026-08-24 — Structured review packet
+
+The structured review is a local, user-authored packet linked to one or more
+currently active trigger definitions. Opening captures covenant context,
+trigger versions, states, and latest evaluation IDs. Completion requires
+factual observations, a falsifier check, a bounded descriptive decision
+(`continue_policy`, `deescalate`, `defer_review`, or `create_successor`), and a
+rationale. A follow-up timestamp is optional but cannot precede completion.
+
+Completed packets are immutable. Their completion and linked trigger cooldown
+transitions run in one SQLite transaction; if any linked trigger is no longer
+active, the entire completion rolls back. The packet records policy context as
+read-only evidence and never turns candidate actions into generated advice or
+executed actions.
+
+## 2026-08-25 — UX hardening boundary
+
+The UX pass preserves the server-rendered, local-only stack and all domain
+semantics. Improvements stay at the presentation and browser-interaction
+boundary: section wayfinding, responsive layout, focus/error states, request
+locking, and ephemeral success context. Successful mutations may reload the
+server-rendered page, but a short session-scoped flash message and section hash
+restore the user's context; no user-authored policy or portfolio data is placed
+in the message.
+
+## 2026-08-25 — Guided decision workspace
+
+The default first-use surface is an example-led decision review bench, not a
+long blank covenant form. Four situation packs each contain three distinct,
+complete, explicitly fictional policy lifecycles. Selecting and resetting an
+example is presentation-only. “Use as my starting point” copies only covenant
+fields into an editable draft; fictional observations, trigger evaluations,
+reviews, and cooldown records never enter personal persistence.
+
+Returning users receive a deterministic summary of saved policy, observation,
+condition, review, and schedule state before the example library. Observation
+rows, percentage-based guardrails, and guided controls for all seven condition
+types are the normal interaction path. Raw JSON remains an Advanced exact-input
+path rather than the product's default vocabulary.
+
+## 2026-08-25 — Variant generation provider boundary
+
+Bundled examples are the only active variant source in this goal. The runtime
+contract is provider-neutral and normalizes two or three covenant variants with
+explicit provenance, but no local or OpenRouter adapter, credential handling,
+network call, or simulated model response is implemented.
+
+A successor may add interchangeable local OpenAI-compatible and OpenRouter
+adapters only with secure credential storage, redaction tests, explicit model
+and provider provenance, timeout and budget enforcement, and failure-state
+proof. Deliberately configuring OpenRouter is the consent event; normal use
+should not repeat a warning afterward. Raw credentials may never enter SQLite,
+rendered HTML, logs, exports, test fixtures, or delegated work.
+
+## 2026-08-25 — Visual direction
+
+The product uses a decision review bench visual system: warm pale-stone canvas,
+deep-ink navigation and summary fields, saturated cobalt selection and primary
+actions, thin registration rules, clipped controls, and restrained semantic
+state colors. The design intentionally avoids rounded-card grids, decorative
+finance imagery, gradients, glass effects, and gamified trading conventions.
+Manrope is bundled under its Open Font License and served by the local server
+as the `Decision Sans` variable family; no font CDN or remote asset request is
+allowed. System sans-serif fallbacks remain available if local font loading
+fails.

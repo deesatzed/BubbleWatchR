@@ -1,6 +1,7 @@
 import type { AuditEvent } from "../audit/store.js";
 import type { CalculationBundle } from "../calculations/types.js";
 import type { Covenant } from "../domain/types.js";
+import type { StructuredReview } from "../reviews/types.js";
 import type { TriggerDefinition, TriggerEvaluationRecord, TriggerState } from "../triggers/types.js";
 
 export type CovenantExport = {
@@ -18,6 +19,13 @@ export type TriggerExport = {
   auditEvents: AuditEvent[];
 };
 
+export type ReviewExport = {
+  exportedAt: string;
+  covenant: Covenant;
+  review: StructuredReview;
+  auditEvents: AuditEvent[];
+};
+
 export function buildExport(covenant: Covenant, auditEvents: AuditEvent[]): CovenantExport {
   return { exportedAt: new Date().toISOString(), covenant, auditEvents };
 }
@@ -30,6 +38,10 @@ export function buildTriggerExport(
   auditEvents: AuditEvent[],
 ): TriggerExport {
   return { exportedAt: new Date().toISOString(), covenant, definitions, states, evaluations, auditEvents };
+}
+
+export function buildReviewExport(covenant: Covenant, review: StructuredReview, auditEvents: AuditEvent[]): ReviewExport {
+  return { exportedAt: new Date().toISOString(), covenant, review, auditEvents };
 }
 
 export function toJson(exported: CovenantExport): string {
@@ -141,6 +153,61 @@ ${evaluations}
 ## Audit events
 
 ${exported.auditEvents.map((event) => `- ${event.occurredAt} — ${event.eventType} — ${event.payloadHash}`).join("\n") || "- None recorded"}
+`;
+}
+
+function reviewText(value: unknown): string {
+  return String(value ?? "").replaceAll("\u0000", "");
+}
+
+export function toReviewJson(exported: ReviewExport): string {
+  return `${JSON.stringify(exported, null, 2)}\n`;
+}
+
+export function toReviewMarkdown(exported: ReviewExport): string {
+  const { covenant, review, auditEvents } = exported;
+  const triggers = review.openingContext.triggerEvaluations.map((trigger) =>
+    `- ${reviewText(trigger.triggerType)} — ${reviewText(trigger.triggerId)} — state ${reviewText(trigger.state)} — evaluation ${reviewText(trigger.evaluationId ?? "None")} — observed ${reviewText(trigger.observedValue ?? "Unknown")}`,
+  ).join("\n") || "- None recorded";
+  const completion = review.completion;
+  return `# Structured Review — ${reviewText(covenant.name)}
+
+> User-authored review record. This export is not investment advice and does not execute trades.
+
+## Provenance
+
+- Review ID: ${reviewText(review.id)}
+- Covenant ID: ${reviewText(review.covenantId)}
+- Covenant version: ${review.covenantVersion}
+- Review version: ${review.reviewVersion}
+- Status: ${review.status}
+- Opened: ${review.openedAt}
+- Completed: ${review.completedAt ?? "Not completed"}
+- Exported: ${exported.exportedAt}
+
+## Opening context
+
+- Covenant purpose: ${reviewText(review.openingContext.covenantPurpose)}
+- Review rules: ${review.openingContext.reviewRules.map(reviewText).join("; ") || "None recorded"}
+- Candidate actions context: ${review.openingContext.candidateActions.map(reviewText).join("; ") || "None recorded"}
+- De-escalation conditions: ${review.openingContext.deescalationConditions.map(reviewText).join("; ") || "None recorded"}
+- Re-entry conditions: ${review.openingContext.reentryConditions.map(reviewText).join("; ") || "None recorded"}
+
+### Linked trigger evaluations
+
+${triggers}
+
+## Review response
+
+- Factual observations: ${reviewText(completion?.factualObservations ?? review.draft.factualObservations ?? "Not completed")}
+- Falsifier check: ${reviewText(completion?.falsifierCheck ?? review.draft.falsifierCheck ?? "Not completed")}
+- Decision: ${reviewText(completion?.decision ?? review.draft.decision ?? "Not completed")}
+- Rationale: ${reviewText(completion?.rationale ?? review.draft.rationale ?? "Not completed")}
+- Follow-up: ${reviewText(completion?.followUpAt ?? review.draft.followUpAt ?? "None")}
+
+## Audit events
+
+${auditEvents.map((event) => `- ${event.occurredAt} — ${event.eventType} — ${event.payloadHash}`).join("\n") || "- None recorded"}
 `;
 }
 

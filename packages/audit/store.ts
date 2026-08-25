@@ -100,6 +100,21 @@ export function openDatabase(path = ".data/decision-covenant.sqlite"): DatabaseS
       ON trigger_evaluations(trigger_id, observed_at, created_at);
     CREATE UNIQUE INDEX IF NOT EXISTS trigger_evaluations_trigger_time_idx
       ON trigger_evaluations(trigger_id, observed_at);
+    CREATE TABLE IF NOT EXISTS structured_reviews (
+      id TEXT PRIMARY KEY,
+      covenant_id TEXT NOT NULL,
+      covenant_version INTEGER NOT NULL,
+      review_version INTEGER NOT NULL,
+      status TEXT NOT NULL,
+      trigger_ids TEXT NOT NULL,
+      data TEXT NOT NULL,
+      opened_at TEXT NOT NULL,
+      completed_at TEXT,
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS structured_reviews_covenant_idx
+      ON structured_reviews(covenant_id, opened_at, created_at);
   `);
   return db;
 }

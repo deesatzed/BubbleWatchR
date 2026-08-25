@@ -11,12 +11,14 @@
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "node scripts/lint.mjs",
-    "test": "npm run build && node --test dist/tests/unit.test.js dist/tests/calculations.test.js dist/tests/triggers.test.js",
+    "test": "npm run build && node --test dist/tests/unit.test.js dist/tests/calculations.test.js dist/tests/triggers.test.js dist/tests/reviews.test.js dist/tests/examples.test.js dist/tests/ui-content.test.js dist/tests/workspace.test.js dist/tests/trigger-presentation.test.js dist/tests/variants.test.js",
     "test:e2e": "npm run build && node scripts/run-e2e.mjs",
     "verify:exports": "node scripts/verify-exports.mjs",
     "verify:calculations": "npm run build && node scripts/verify-calculations.mjs",
     "verify:triggers": "npm run build && node scripts/verify-triggers.mjs",
-    "verify:core": "npm run lint && npm run typecheck && npm test && npm run test:e2e && npm run verify:exports && npm run verify:calculations && npm run verify:triggers && npm run build"
+    "verify:reviews": "npm run build && node scripts/verify-reviews.mjs",
+    "verify:responsive": "npm run build && node scripts/verify-responsive.mjs",
+    "verify:core": "npm run lint && npm run typecheck && npm test && npm run test:e2e && npm run verify:exports && npm run verify:calculations && npm run verify:triggers && npm run verify:reviews && npm run build"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

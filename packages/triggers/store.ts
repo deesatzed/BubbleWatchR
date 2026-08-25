@@ -210,23 +210,28 @@ export function evaluateAndPersistTriggers(db: DatabaseSync, covenantId: string,
   }
 }
 
-export function completeTriggerReview(db: DatabaseSync, triggerId: string, completedAt: string): TriggerState {
+export function completeTriggerReviewInTransaction(db: DatabaseSync, triggerId: string, completedAt: string): TriggerState {
   const definition = definitionOrThrow(db, triggerId);
   const before = getTriggerState(db, triggerId);
   if (before.state !== "review" && before.state !== "escalated_review") throw new Error("only an active review can be completed");
   const after = transitionTrigger(definition, before, { status: "available", observedValue: 0, condition: false, details: { reviewCompleted: true }, inputSnapshotIds: [] }, completedAt, { completedReviewAt: completedAt });
+  saveEvaluation(db, triggerId, { now: completedAt, snapshots: [], currentSnapshotId: null, covenantApprovedAt: null, lastCompletedReviewAt: completedAt }, { status: "available", observedValue: 0, condition: false, details: { reviewCompleted: true }, inputSnapshotIds: [] }, before, after);
+  saveState(db, triggerId, after, completedAt);
+  appendAuditEvent(db, {
+    eventType: "trigger.review.completed",
+    entityType: "trigger_definition",
+    entityId: triggerId,
+    entityVersion: definition.triggerVersion,
+    occurredAt: completedAt,
+    payload: { from: before.state, to: after.state, completedAt },
+  });
+  return after;
+}
+
+export function completeTriggerReview(db: DatabaseSync, triggerId: string, completedAt: string): TriggerState {
   db.exec("BEGIN");
   try {
-    saveEvaluation(db, triggerId, { now: completedAt, snapshots: [], currentSnapshotId: null, covenantApprovedAt: null, lastCompletedReviewAt: completedAt }, { status: "available", observedValue: 0, condition: false, details: { reviewCompleted: true }, inputSnapshotIds: [] }, before, after);
-    saveState(db, triggerId, after, completedAt);
-    appendAuditEvent(db, {
-      eventType: "trigger.review.completed",
-      entityType: "trigger_definition",
-      entityId: triggerId,
-      entityVersion: definition.triggerVersion,
-      occurredAt: completedAt,
-      payload: { from: before.state, to: after.state, completedAt },
-    });
+    const after = completeTriggerReviewInTransaction(db, triggerId, completedAt);
     db.exec("COMMIT");
     return after;
   } catch (error) {
