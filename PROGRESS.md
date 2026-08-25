@@ -225,6 +225,9 @@ Fresh verification on 2026-08-25:
   recovery, persisted success context, and first-use/returning screenshot
   capture.
 - The one-time Impeccable anti-pattern detector returned `[]`.
+- The independent finish reviewer first returned `Fix before ship`; after the
+  bounded repair and recapture round, the same reviewer returned `SHIP` with no
+  remaining material blockers.
 - `git diff --check` — passed.
 
 Remaining product boundary: Generate variants exposes the honest bundled-only,
