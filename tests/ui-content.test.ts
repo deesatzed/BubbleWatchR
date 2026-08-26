@@ -27,6 +27,8 @@ test("root presents the prediction-discipline landing page and workspace stays s
     match(landing, /The Aurora Compute Cycle/);
     match(landing, /Fictional scenario/);
     match(landing, /href="\/workspace"/);
+    strictEqual((landing.match(/data-showpiece-stage=/g) ?? []).length, 5);
+    doesNotMatch(landing, /data-showpiece-stage=[^>]*\shidden(?:\s|>)/);
     doesNotMatch(landing, /id="covenant-form"/);
 
     const workspace = await fetch(`${app.url}/workspace`).then((response) => response.text());

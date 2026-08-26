@@ -63,9 +63,9 @@ function stagePanel(stage: ShowpieceStage, selected: boolean): string {
     <header class="stage-heading">
       <div class="stage-index" aria-hidden="true">${escapeHtml(stage.step)}</div>
       <div>
-        <p class="stage-eyebrow">${escapeHtml(stage.eyebrow)} <span>·</span> ${escapeHtml(formatDate(stage.asOf))}</p>
         <h3>${escapeHtml(stage.headline)}</h3>
         <p class="stage-narrative">${escapeHtml(stage.narrative)}</p>
+        <p class="stage-meta"><strong>Fictional scenario</strong> <span>·</span> ${escapeHtml(stage.eyebrow)} <span>·</span> ${escapeHtml(formatDate(stage.asOf))}</p>
       </div>
     </header>
 
@@ -213,8 +213,12 @@ export function landingPage(): string {
     width: 1rem;
     height: 1rem;
     background: var(--cobalt);
-    box-shadow: .35rem .35rem 0 var(--amber);
+    position: relative;
+    background: transparent;
   }
+  .brand-mark::before, .brand-mark::after { content: ""; position: absolute; width: .72rem; height: .72rem; }
+  .brand-mark::before { top: 0; left: 0; background: var(--cobalt); }
+  .brand-mark::after { right: 0; bottom: 0; background: var(--amber); }
   .site-nav { display: flex; align-items: center; gap: 1.6rem; }
   .site-nav a {
     font-size: .82rem;
@@ -239,10 +243,8 @@ export function landingPage(): string {
     line-height: 1;
     text-decoration: none;
   }
-  .button::after { content: "↗"; font-size: 1.05em; }
   .button:hover { border-color: var(--cobalt); background: var(--cobalt); }
   .button.secondary { color: var(--ink); background: transparent; }
-  .button.secondary::after { content: "↓"; }
   .button.secondary:hover { color: white; background: var(--ink); }
   :focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
 
@@ -265,7 +267,7 @@ export function landingPage(): string {
     margin: 0;
     font-size: clamp(4rem, 7.4vw, 6rem);
     font-weight: 750;
-    letter-spacing: -.065em;
+    letter-spacing: -.04em;
     line-height: .87;
   }
   .hero-copy h1 span { color: var(--cobalt); }
@@ -283,6 +285,8 @@ export function landingPage(): string {
     line-height: 1.5;
   }
   .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.8rem; }
+
+  .compact-protocol { display: none; }
 
   .protocol-preview {
     min-width: 0;
@@ -319,7 +323,7 @@ export function landingPage(): string {
     margin: clamp(2rem, 5vh, 5rem) 0 1rem;
     font-size: clamp(2.5rem, 4.4vw, 4.6rem);
     line-height: .95;
-    letter-spacing: -.055em;
+    letter-spacing: -.04em;
   }
   .protocol-preview > p {
     max-width: 34rem;
@@ -378,7 +382,7 @@ export function landingPage(): string {
     display: block;
     font-size: 2.3rem;
     font-weight: 650;
-    letter-spacing: -.045em;
+    letter-spacing: -.04em;
     line-height: 1;
   }
   .truth-tape span { display: block; margin-top: .6rem; color: var(--muted); font-size: .75rem; font-weight: 700; }
@@ -392,13 +396,13 @@ export function landingPage(): string {
     align-items: end;
     margin-bottom: 3rem;
   }
-  .section-heading .label { align-self: start; }
+  .section-heading > div { grid-column: 2; }
   .section-heading h2 {
     max-width: 13ch;
     margin: 0;
     font-size: clamp(2.8rem, 5.6vw, 5.5rem);
     line-height: .95;
-    letter-spacing: -.055em;
+    letter-spacing: -.04em;
   }
   .section-heading p {
     max-width: 42rem;
@@ -407,7 +411,7 @@ export function landingPage(): string {
     font-size: 1.05rem;
     line-height: 1.55;
   }
-  .label, .stage-eyebrow {
+  .label, .stage-meta {
     color: var(--muted);
     font-size: .67rem;
     font-weight: 800;
@@ -448,16 +452,14 @@ export function landingPage(): string {
     color: var(--cobalt);
     font-size: clamp(3.5rem, 7vw, 6rem);
     font-weight: 250;
-    letter-spacing: -.08em;
+    letter-spacing: -.04em;
     line-height: .8;
   }
-  .stage-eyebrow { margin: 0 0 1.2rem; }
-  .stage-eyebrow span { color: var(--cobalt); }
   .stage-heading h3 {
     max-width: 16ch;
     margin: 0;
     font-size: clamp(2.3rem, 4.8vw, 4.8rem);
-    letter-spacing: -.055em;
+    letter-spacing: -.04em;
     line-height: .96;
   }
   .stage-narrative {
@@ -467,6 +469,9 @@ export function landingPage(): string {
     font-size: 1.05rem;
     line-height: 1.6;
   }
+  .stage-meta { margin: 1.25rem 0 0; }
+  .stage-meta strong { color: var(--ink); }
+  .stage-meta span { color: var(--cobalt); }
   .metric-strip {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -477,9 +482,9 @@ export function landingPage(): string {
   .metric { min-width: 0; padding: 1.4rem; border-right: 1px solid var(--line); }
   .metric:last-child { border-right: 0; }
   .metric dt { color: var(--muted); font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-  .metric dd { margin: .65rem 0 .8rem; font-size: clamp(1.7rem, 3vw, 2.75rem); font-weight: 700; letter-spacing: -.045em; line-height: 1; }
+  .metric dd { margin: .65rem 0 .8rem; font-size: clamp(1.7rem, 3vw, 2.75rem); font-weight: 700; letter-spacing: -.04em; line-height: 1; }
   .metric p { margin: 0; color: var(--muted); font-size: .78rem; line-height: 1.45; }
-  .status-word { display: inline-block; margin-right: .25rem; color: var(--lime-ink); background: var(--lime); font-size: .62rem; font-weight: 850; letter-spacing: .06em; text-transform: uppercase; }
+  .status-word { display: inline-block; margin-right: .25rem; color: var(--lime-ink); background: var(--lime); font-size: .62rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
   .metric[data-status="unavailable"] .status-word { color: var(--ink); background: var(--paper-2); }
   .metric[data-status="watch"] .status-word,
   .metric[data-status="review"] .status-word,
@@ -513,7 +518,7 @@ export function landingPage(): string {
   .state-name {
     color: var(--dark-muted);
     font-size: .62rem;
-    font-weight: 850;
+    font-weight: 800;
     letter-spacing: .08em;
     text-transform: uppercase;
   }
@@ -539,7 +544,7 @@ export function landingPage(): string {
   }
   .evidence-list li::before { content: ""; position: absolute; top: .55rem; left: 0; width: .45rem; height: .45rem; background: var(--cobalt); }
   .evidence-list.contrary li::before { background: var(--danger); }
-  .falsifier, .recorded-decision { margin-top: 1.5rem; padding: 2rem; border-left: .35rem solid var(--amber); background: var(--paper); }
+  .falsifier, .recorded-decision { margin-top: 1.5rem; padding: 2rem; border: 1px solid var(--amber); background: var(--paper); }
   .falsifier p { max-width: 60rem; margin: .8rem 0 0; font-size: 1rem; line-height: 1.55; }
   .recorded-decision { display: grid; grid-template-columns: .65fr 1.2fr .65fr; gap: 2rem; align-items: start; border-color: var(--cobalt); }
   .recorded-decision strong { display: block; margin-top: .6rem; font-size: 1.7rem; letter-spacing: -.035em; }
@@ -555,7 +560,7 @@ export function landingPage(): string {
   .anatomy-grid { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 4rem; border-top: 1px solid #29435e; }
   .anatomy-step { min-height: 18rem; padding: 1.5rem; border-right: 1px solid #29435e; }
   .anatomy-step:last-child { border-right: 0; }
-  .anatomy-step span { color: var(--lime); font-size: .68rem; font-weight: 850; letter-spacing: .12em; }
+  .anatomy-step span { color: var(--lime); font-size: .68rem; font-weight: 800; letter-spacing: .12em; }
   .anatomy-step h3 { margin: 5rem 0 1rem; font-size: 1.5rem; letter-spacing: -.035em; }
   .anatomy-step p { margin: 0; color: var(--dark-muted); font-size: .88rem; line-height: 1.55; }
 
@@ -564,7 +569,7 @@ export function landingPage(): string {
   .use-case {
     min-height: 8.5rem;
     display: grid;
-    grid-template-columns: 5rem .75fr 1fr auto;
+    grid-template-columns: 5rem .75fr 1fr;
     gap: 2rem;
     align-items: center;
     border-bottom: 1px solid var(--line);
@@ -573,23 +578,21 @@ export function landingPage(): string {
   .use-case > span:first-child { color: var(--cobalt); font-weight: 800; }
   .use-case h3 { margin: 0; font-size: clamp(1.35rem, 2vw, 2rem); letter-spacing: -.035em; }
   .use-case p { max-width: 38rem; margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.5; }
-  .use-case .arrow { font-size: 1.4rem; }
   .use-case:hover { background: var(--paper); }
-  .use-case:hover .arrow { color: var(--cobalt); transform: translateX(.25rem); }
 
   .trust { padding: clamp(5rem, 9vw, 9rem) 0; border-block: 1px solid var(--line); background: var(--paper); }
   .trust-grid { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line-strong); }
   .trust-column { padding: clamp(2rem, 4vw, 4rem); }
   .trust-column + .trust-column { border-left: 1px solid var(--line-strong); }
-  .trust-column h3 { margin: 0 0 2rem; font-size: clamp(1.8rem, 3vw, 3rem); letter-spacing: -.045em; }
+  .trust-column h3 { margin: 0 0 2rem; font-size: clamp(1.8rem, 3vw, 3rem); letter-spacing: -.04em; }
   .trust-column li { position: relative; margin: 1rem 0; padding-left: 1.5rem; color: var(--muted); line-height: 1.5; }
-  .trust-column li::before { content: "+"; position: absolute; left: 0; color: var(--cobalt); font-weight: 850; }
+  .trust-column li::before { content: "+"; position: absolute; left: 0; color: var(--cobalt); font-weight: 800; }
   .trust-column.did-not li::before { content: "—"; color: var(--danger); }
   .trust-footnote { max-width: 62rem; margin: 2rem 0 0; color: var(--muted); font-size: .8rem; line-height: 1.5; }
 
   .final-cta { padding: clamp(5rem, 9vw, 9rem) 0; color: white; background: var(--cobalt); }
   .final-cta .section-shell { display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: end; }
-  .final-cta h2 { max-width: 12ch; margin: 0; font-size: clamp(3rem, 6.5vw, 6rem); line-height: .9; letter-spacing: -.06em; }
+  .final-cta h2 { max-width: 12ch; margin: 0; font-size: clamp(3rem, 6.5vw, 6rem); line-height: .9; letter-spacing: -.04em; }
   .final-cta p { max-width: 40rem; margin: 1.5rem 0 0; color: #dbe7ff; font-size: 1rem; line-height: 1.55; }
   .final-cta .button { border-color: white; color: var(--cobalt); background: white; }
   .final-cta .button:hover { color: white; background: var(--ink); }
@@ -610,20 +613,43 @@ export function landingPage(): string {
   @media (max-width: 70rem) {
     .hero { grid-template-columns: 1fr; }
     .hero-copy { min-height: 43rem; padding-inline: max(1.5rem, calc((100vw - var(--max)) / 2)); }
+    .compact-protocol {
+      display: block;
+      margin-top: 2rem;
+      border: 1px solid var(--line-strong);
+      background: var(--paper);
+    }
+    .compact-protocol header { display: flex; justify-content: space-between; gap: 1rem; padding: .7rem .85rem; border-bottom: 1px solid var(--line); font-size: .64rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .compact-protocol header strong { color: var(--ink); }
+    .compact-protocol header span { color: var(--muted); }
+    .compact-protocol ol { display: grid; grid-template-columns: repeat(5, 1fr); margin: 0; padding: 0; list-style: none; }
+    .compact-protocol li { position: relative; min-width: 0; padding: .8rem .35rem; border-right: 1px solid var(--line); color: var(--muted); font-size: .62rem; font-weight: 800; text-align: center; text-transform: uppercase; }
+    .compact-protocol li:last-child { border-right: 0; }
+    .compact-protocol li.active { color: white; background: var(--cobalt); }
+    .compact-protocol footer { display: flex; justify-content: space-between; gap: 1rem; padding: .65rem .85rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .68rem; }
+    .compact-protocol footer strong { color: var(--cobalt); }
+    .section-heading { grid-template-columns: 1fr; }
+    .section-heading > div { grid-column: auto; }
     .protocol-preview { min-height: 42rem; }
     .section-heading { grid-template-columns: 1fr; }
     .condition-row { grid-template-columns: minmax(10rem, .8fr) auto; }
     .condition-row p { grid-column: 1 / -1; padding-left: 1.3rem; }
-    .use-case { grid-template-columns: 3rem .8fr 1fr auto; gap: 1.2rem; }
+    .use-case { grid-template-columns: 3rem .8fr 1fr; gap: 1.2rem; }
   }
 
   @media (max-width: 48rem) {
     html { scroll-behavior: auto; }
     .header-inner { width: min(100% - 2rem, var(--max)); grid-template-columns: 1fr auto; }
     .site-nav { display: none; }
-    .hero-copy { min-height: calc(100svh - 4.75rem); padding: 3.5rem 1rem; }
-    .hero-copy h1 { font-size: clamp(3.5rem, 16vw, 5.5rem); }
-    .hero-deck { margin-top: 2.5rem; }
+    .hero-copy { min-height: calc(100svh - 4.75rem); justify-content: flex-start; gap: 1.25rem; padding: 2rem 1rem; }
+    .hero-copy h1 { font-size: clamp(3.1rem, 14.5vw, 5rem); }
+    .compact-protocol { margin-top: .25rem; }
+    .compact-protocol header { padding: .55rem .65rem; }
+    .compact-protocol li { min-height: 2.75rem; display: flex; align-items: center; justify-content: center; padding: .55rem .2rem; font-size: .55rem; }
+    .compact-protocol footer { padding: .5rem .65rem; font-size: .62rem; }
+    .hero-deck { margin-top: .25rem; padding-top: 1rem; }
+    .hero-deck > p { font-size: 1rem; }
+    .hero-actions { margin-top: 1rem; }
     .hero-actions .button { width: 100%; }
     .protocol-preview { min-height: auto; padding: 3rem 1rem; }
     .protocol-preview h2 { font-size: clamp(2.7rem, 12vw, 4.2rem); }
@@ -633,10 +659,10 @@ export function landingPage(): string {
     .preview-facts div:last-child, .truth-tape div:last-child { border-bottom: 0; }
     .truth-tape div { min-height: auto; padding: 1.25rem 1rem; }
     .section-shell { width: min(100% - 2rem, var(--max)); }
-    .showpiece-tabs { grid-template-columns: 1fr; }
-    .stage-tab { min-height: 3.4rem; display: flex; align-items: center; gap: 1rem; border-right: 0; border-bottom: 1px solid var(--line); }
-    .stage-tab:last-child { border-bottom: 0; }
-    .stage-tab strong { margin: 0; }
+    .showpiece-tabs { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .stage-tab { min-height: 4rem; padding: .6rem .2rem; border-right: 1px solid var(--line); text-align: center; }
+    .stage-tab:last-child { border-right: 0; }
+    .stage-tab strong { margin-top: .3rem; font-size: .62rem; }
     .stage-heading { grid-template-columns: 1fr; }
     .stage-index { font-size: 4.5rem; }
     .metric-strip, .condition-sheet, .evidence-grid, .recorded-decision, .trust-grid, .final-cta .section-shell { grid-template-columns: 1fr; }
@@ -649,7 +675,7 @@ export function landingPage(): string {
     .anatomy-grid { grid-template-columns: 1fr; }
     .anatomy-step { min-height: auto; border-right: 0; border-bottom: 1px solid #29435e; }
     .anatomy-step h3 { margin-top: 2.5rem; }
-    .use-case { grid-template-columns: 2.5rem 1fr auto; padding: 1.5rem 0; }
+    .use-case { grid-template-columns: 2.5rem 1fr; padding: 1.5rem 0; }
     .use-case p { grid-column: 2 / -1; }
     .final-cta .button { width: 100%; }
     .footer-inner { min-height: 9rem; flex-direction: column; align-items: flex-start; justify-content: center; }
@@ -682,6 +708,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   <section class="hero" aria-labelledby="hero-heading">
     <div class="hero-copy">
       <h1 id="hero-heading">The prediction is <span>not the decision.</span></h1>
+      <section class="compact-protocol" aria-label="Fictional Aurora protocol summary">
+        <header><strong>Fictional scenario</strong><span>Aurora protocol</span></header>
+        <ol><li>Write</li><li>Observe</li><li>Confirm</li><li class="active">Review</li><li>Record</li></ol>
+        <footer><span><strong>Deterministic</strong> review invocation</span><span>Human disposition</span></footer>
+      </section>
       <div class="hero-deck">
         <p>Build the review protocol around uncertain evidence before the forecast gets loud. Then preserve what was known, challenged, and decided.</p>
         <div class="hero-actions">
@@ -723,7 +754,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   <section class="showpiece" id="aurora" aria-labelledby="aurora-heading">
     <div class="section-shell">
       <header class="section-heading">
-        <span class="label">Fictional evidence theater</span>
         <div>
           <h2 id="aurora-heading">${escapeHtml(AURORA_SHOWPIECE.title)}</h2>
           <p>${escapeHtml(AURORA_SHOWPIECE.subtitle)} Every number below illustrates review mechanics, not a live forecast, return, or recommendation.</p>
@@ -737,7 +767,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   <section class="anatomy" id="anatomy" aria-labelledby="anatomy-heading">
     <div class="section-shell">
       <header class="section-heading">
-        <span class="label">Decision anatomy</span>
         <div><h2 id="anatomy-heading">A defensible decision has anatomy.</h2><p>The product keeps policy, evidence, review conditions, and human judgment connected without pretending they are the same thing.</p></div>
       </header>
       <div class="anatomy-grid">
@@ -752,14 +781,13 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   <section class="use-cases" id="scope" aria-labelledby="scope-heading">
     <div class="section-shell">
       <header class="section-heading">
-        <span class="label">Current scope</span>
         <div><h2 id="scope-heading">Four ways to practice the method.</h2><p>Start with one of twelve fictional examples, inspect the complete lifecycle, then copy only the policy fields you want to customize.</p></div>
       </header>
       <div class="use-case-list">
-        <a class="use-case" href="/workspace#examples"><span>01</span><h3>AI or thematic exposure</h3><p>Review a thesis when classified exposure crosses written boundaries while some holdings remain unknown.</p><span class="arrow" aria-hidden="true">→</span></a>
-        <a class="use-case" href="/workspace#examples"><span>02</span><h3>Employer or single-stock concentration</h3><p>Separate vesting accumulation, whole-portfolio concentration, and the evidence needed before a review.</p><span class="arrow" aria-hidden="true">→</span></a>
-        <a class="use-case" href="/workspace#examples"><span>03</span><h3>Drawdown or volatility</h3><p>Distinguish a real decline from stale prices, account-scope drift, or insufficient comparable history.</p><span class="arrow" aria-hidden="true">→</span></a>
-        <a class="use-case" href="/workspace#examples"><span>04</span><h3>Scheduled policy review</h3><p>Revisit a policy on a calendar without manufacturing urgency or waiting for a dramatic signal.</p><span class="arrow" aria-hidden="true">→</span></a>
+        <a class="use-case" href="/workspace#examples"><span>01</span><h3>AI or thematic exposure</h3><p>Review a thesis when classified exposure crosses written boundaries while some holdings remain unknown.</p></a>
+        <a class="use-case" href="/workspace#examples"><span>02</span><h3>Employer or single-stock concentration</h3><p>Separate vesting accumulation, whole-portfolio concentration, and the evidence needed before a review.</p></a>
+        <a class="use-case" href="/workspace#examples"><span>03</span><h3>Drawdown or volatility</h3><p>Distinguish a real decline from stale prices, account-scope drift, or insufficient comparable history.</p></a>
+        <a class="use-case" href="/workspace#examples"><span>04</span><h3>Scheduled policy review</h3><p>Revisit a policy on a calendar without manufacturing urgency or waiting for a dramatic signal.</p></a>
       </div>
     </div>
   </section>
@@ -767,7 +795,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   <section class="trust" aria-labelledby="trust-heading">
     <div class="section-shell">
       <header class="section-heading">
-        <span class="label">Trust architecture</span>
         <div><h2 id="trust-heading">Clear product. Clear boundary.</h2><p>A local policy and evidence workspace should be explicit about what it records—and what remains outside the system.</p></div>
       </header>
       <div class="trust-grid">

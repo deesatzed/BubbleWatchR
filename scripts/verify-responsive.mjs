@@ -12,11 +12,64 @@ const viewports = [
 const app = await startServer({ dbPath: ":memory:" });
 const browser = await chromium.launch({ headless: true });
 mkdirSync(".impeccable/review", { recursive: true });
+
+async function verifySkipLink(page, viewportName) {
+  await page.keyboard.press("Tab");
+  strictEqual(await page.evaluate(() => document.activeElement?.className), "skip-link", `${viewportName}: keyboard focus did not start at the skip link`);
+}
+
 try {
   for (const viewport of viewports) {
     const page = await browser.newPage({ viewport });
     try {
-      await page.goto(app.url);
+      await page.goto(`${app.url}/`);
+      await page.evaluate(() => document.fonts.ready);
+      const layout = await page.evaluate(() => {
+        const buttons = [...document.querySelectorAll("button")].filter((button) => button.getBoundingClientRect().width > 0);
+        const heroHeading = document.querySelector("#hero-heading")?.getBoundingClientRect();
+        const workspaceLink = [...document.querySelectorAll('a[href="/workspace"]')].find((link) => {
+          const rect = link.getBoundingClientRect();
+          return rect.width > 0 && rect.height > 0;
+        })?.getBoundingClientRect();
+        return {
+          overflow: document.documentElement.scrollWidth > window.innerWidth + 1,
+          header: Boolean(document.querySelector("header.site-header")),
+          main: Boolean(document.querySelector("main#main-content")),
+          footer: Boolean(document.querySelector("footer.site-footer")),
+          fontLoaded: document.fonts.check('16px "Decision Sans"'),
+          minButtonHeight: Math.min(...buttons.map((button) => button.getBoundingClientRect().height)),
+          heroVisible: Boolean(heroHeading && heroHeading.width > 0 && heroHeading.height > 0),
+          workspaceActionVisible: Boolean(workspaceLink && workspaceLink.width > 0 && workspaceLink.height >= 44),
+          stageTabs: document.querySelectorAll("[data-showpiece-tab]").length,
+          stagePanels: document.querySelectorAll("[data-showpiece-stage]").length,
+        };
+      });
+      strictEqual(layout.overflow, false, `${viewport.name}: landing has horizontal overflow`);
+      strictEqual(layout.header, true, `${viewport.name}: landing header landmark missing`);
+      strictEqual(layout.main, true, `${viewport.name}: landing main landmark missing`);
+      strictEqual(layout.footer, true, `${viewport.name}: landing footer landmark missing`);
+      strictEqual(layout.fontLoaded, true, `${viewport.name}: landing self-hosted display font did not load`);
+      ok(layout.minButtonHeight >= 44, `${viewport.name}: landing button target is smaller than 44px`);
+      strictEqual(layout.heroVisible, true, `${viewport.name}: landing thesis is not visible`);
+      strictEqual(layout.workspaceActionVisible, true, `${viewport.name}: landing workspace action is not visible`);
+      strictEqual(layout.stageTabs, 5, `${viewport.name}: landing stage controls changed`);
+      strictEqual(layout.stagePanels, 5, `${viewport.name}: landing stage evidence changed`);
+
+      await page.screenshot({ path: `.impeccable/review/landing-${viewport.name}.png`, fullPage: false });
+      await verifySkipLink(page, `landing-${viewport.name}`);
+      await page.getByRole("tab", { name: /03 Converge/ }).click();
+      await page.getByRole("heading", { name: /Two conditions converge/ }).waitFor();
+      strictEqual(await page.locator(".showpiece-panel.is-active").getAttribute("data-showpiece-stage"), "aurora-converge", `${viewport.name}: selected evidence panel did not update`);
+      await page.screenshot({ path: `.impeccable/review/landing-evidence-${viewport.name}.png`, fullPage: false });
+    } finally {
+      await page.close();
+    }
+  }
+
+  for (const viewport of viewports) {
+    const page = await browser.newPage({ viewport });
+    try {
+      await page.goto(`${app.url}/workspace`);
       await page.evaluate(() => document.fonts.ready);
       const layout = await page.evaluate(() => {
         const formGrid = document.querySelector(".form-grid");
@@ -35,18 +88,16 @@ try {
           copyInViewport,
         };
       });
-      strictEqual(layout.overflow, false, `${viewport.name}: horizontal overflow`);
-      strictEqual(layout.nav, true, `${viewport.name}: section navigation is hidden`);
-      strictEqual(layout.main, true, `${viewport.name}: main landmark missing`);
-      strictEqual(layout.fontLoaded, true, `${viewport.name}: self-hosted display font did not load`);
-      ok(layout.minButtonHeight >= 44, `${viewport.name}: button target is smaller than 44px`);
-      if (viewport.name === "desktop" || viewport.name === "mobile") strictEqual(layout.copyInViewport, true, `${viewport.name}: no example-copy action in the first viewport`);
-      if (viewport.width >= 768) ok(layout.formColumns >= 2, `${viewport.name}: snapshot forms did not form columns`);
-      else strictEqual(layout.formColumns, 1, `${viewport.name}: snapshot forms should stack`);
-      await page.screenshot({ path: `.impeccable/review/${viewport.name}.png`, fullPage: false });
-      await page.evaluate(() => document.activeElement instanceof HTMLElement && document.activeElement.blur());
-      await page.keyboard.press("Tab");
-      strictEqual(await page.evaluate(() => document.activeElement?.className), "skip-link", `${viewport.name}: keyboard focus did not start at the skip link`);
+      strictEqual(layout.overflow, false, `${viewport.name}: workspace has horizontal overflow`);
+      strictEqual(layout.nav, true, `${viewport.name}: workspace section navigation is hidden`);
+      strictEqual(layout.main, true, `${viewport.name}: workspace main landmark missing`);
+      strictEqual(layout.fontLoaded, true, `${viewport.name}: workspace self-hosted display font did not load`);
+      ok(layout.minButtonHeight >= 44, `${viewport.name}: workspace button target is smaller than 44px`);
+      if (viewport.name === "desktop" || viewport.name === "mobile") strictEqual(layout.copyInViewport, true, `${viewport.name}: no example-copy action in the workspace first viewport`);
+      if (viewport.width >= 768) ok(layout.formColumns >= 2, `${viewport.name}: workspace snapshot forms did not form columns`);
+      else strictEqual(layout.formColumns, 1, `${viewport.name}: workspace snapshot forms should stack`);
+      await page.screenshot({ path: `.impeccable/review/workspace-${viewport.name}.png`, fullPage: false });
+      await verifySkipLink(page, `workspace-${viewport.name}`);
     } finally {
       await page.close();
     }
@@ -54,7 +105,7 @@ try {
 
   const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
   try {
-    await page.goto(app.url);
+    await page.goto(`${app.url}/workspace`);
     await page.locator("#manual-as-of").fill("2026-08-25");
     await page.locator("#manual-portfolio-name").fill("Recovery check");
     await page.locator("#manual-source").fill("responsive verification");
@@ -89,17 +140,17 @@ try {
   ]) {
     const returningPage = await browser.newPage({ viewport });
     try {
-      await returningPage.goto(app.url);
+      await returningPage.goto(`${app.url}/workspace`);
       await returningPage.evaluate(() => document.fonts.ready);
       await returningPage.locator("[data-workstation-summary]").waitFor();
       strictEqual(await returningPage.getByText("Make the decision process before the moment gets loud.", { exact: true }).count(), 0, `${viewport.name}: first-use introduction did not contract`);
       await returningPage.getByRole("heading", { name: "Explore another starting point." }).waitFor();
-      await returningPage.screenshot({ path: `.impeccable/review/${viewport.name}.png`, fullPage: false });
+      await returningPage.screenshot({ path: `.impeccable/review/workspace-${viewport.name}.png`, fullPage: false });
     } finally {
       await returningPage.close();
     }
   }
-  console.log("responsive browser verification passed: desktop 1440, tablet 768, mobile 390; focus, overflow, targets, invalid recovery, and success context verified");
+  console.log("responsive browser verification passed: landing and workspace at desktop 1440, tablet 768, mobile 390; focus, overflow, targets, stage switching, invalid recovery, and success context verified");
 } finally {
   await browser.close();
   await app.close();
