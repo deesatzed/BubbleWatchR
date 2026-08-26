@@ -19,10 +19,29 @@ const draft = {
   notes: "UI content fixture",
 };
 
+test("root presents the prediction-discipline landing page and workspace stays separate", async () => {
+  const app = await startServer({ dbPath: ":memory:" });
+  try {
+    const landing = await fetch(`${app.url}/`).then((response) => response.text());
+    match(landing, /The prediction is not the decision\./);
+    match(landing, /The Aurora Compute Cycle/);
+    match(landing, /Fictional scenario/);
+    match(landing, /href="\/workspace"/);
+    doesNotMatch(landing, /id="covenant-form"/);
+
+    const workspace = await fetch(`${app.url}/workspace`).then((response) => response.text());
+    match(workspace, /id="covenant-form"/);
+    match(workspace, /Four situations\. Three distinct policy philosophies/);
+    doesNotMatch(workspace, /The Aurora Compute Cycle/);
+  } finally {
+    await app.close();
+  }
+});
+
 test("first use renders the decision workspace structure without remote assets", async () => {
   const app = await startServer({ dbPath: ":memory:" });
   try {
-    const html = await fetch(app.url).then((response) => response.text());
+    const html = await fetch(`${app.url}/workspace`).then((response) => response.text());
     for (const label of ["Examples", "My policy", "Observations", "Reviews", "Record"]) {
       match(html, new RegExp(`>${label}<`));
     }
@@ -53,7 +72,7 @@ test("saved personal data switches the surface to its returning state hook", asy
       body: JSON.stringify(draft),
     });
     match(String(response.status), /201/);
-    const html = await fetch(app.url).then((result) => result.text());
+    const html = await fetch(`${app.url}/workspace`).then((result) => result.text());
     match(html, /data-product-state="returning"/);
     match(html, /data-workstation-summary/);
     match(html, />Review the draft</);
@@ -102,7 +121,7 @@ test("returning summary uses only enabled definitions on the current covenant ve
     const currentDefinitions = await fetch(`${app.url}/api/covenants/${v2.covenant.id}/triggers`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ definitions: [scheduled("2026-10-01T13:00:00.000Z"), disabledAi] }) });
     strictEqual(currentDefinitions.status, 201);
 
-    const html = await fetch(app.url).then((response) => response.text());
+    const html = await fetch(`${app.url}/workspace`).then((response) => response.text());
     const summary = html.match(/<section class="workstation-summary"[\s\S]*?<\/section>/)?.[0] ?? "";
     match(summary, /Approved · version 2/);
     match(summary, /1 unavailable/);

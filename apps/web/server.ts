@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { createServer, type IncomingMessage, type Server, type ServerResponse } from "node:http";
 import { URL } from "node:url";
+import { landingPage } from "./landing.js";
 import { closeDatabase, listAuditEvents, openDatabase } from "../../packages/audit/store.js";
 import { buildCalculationBundle } from "../../packages/calculations/bundle.js";
 import {
@@ -346,7 +347,7 @@ function workspaceSummarySection(summary: WorkspaceSummary): string {
   </section>`;
 }
 
-function page(db: ReturnType<typeof openDatabase>): string {
+function workspacePage(db: ReturnType<typeof openDatabase>): string {
   const covenants = listCovenants(db);
   const snapshots = listSnapshots(db);
   const productState = covenants.length > 0 || snapshots.length > 0 ? "returning" : "first-use";
@@ -955,7 +956,8 @@ export function createApp(db = openDatabase()): Server {
       const url = new URL(request.url ?? "/", "http://127.0.0.1");
       const parts = routeParts(url.pathname);
       if (request.method === "GET" && url.pathname === "/assets/fonts/manrope-variable.ttf") return sendFont(response);
-      if (request.method === "GET" && url.pathname === "/") return send(response, 200, page(db));
+      if (request.method === "GET" && url.pathname === "/") return send(response, 200, landingPage());
+      if (request.method === "GET" && url.pathname === "/workspace") return send(response, 200, workspacePage(db));
       if (request.method === "GET" && url.pathname === "/api/snapshots/export.json") {
         const series = listSnapshots(db);
         return send(response, 200, toCalculationCollectionJson(series.map((snapshot) => buildCalculationBundle(snapshot, series))), "application/json; charset=utf-8");
