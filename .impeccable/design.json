@@ -1,0 +1,404 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-26T14:35:29Z",
+  "title": "Design System: Decision Covenant",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Deep Ink",
+        "canonical": "#0a1b2e",
+        "tonalRamp": ["oklch(15% 0.044 252.7)", "oklch(27% 0.044 252.7)", "oklch(39% 0.044 252.7)", "oklch(51% 0.044 252.7)", "oklch(63% 0.044 252.7)", "oklch(75% 0.044 252.7)", "oklch(87% 0.044 252.7)", "oklch(95% 0.044 252.7)"]
+      },
+      "landing-ink-2": {
+        "role": "neutral",
+        "displayName": "Landing Ink Field",
+        "canonical": "#122a43",
+        "tonalRamp": ["oklch(15% 0.055 251.3)", "oklch(27% 0.055 251.3)", "oklch(39% 0.055 251.3)", "oklch(51% 0.055 251.3)", "oklch(63% 0.055 251.3)", "oklch(75% 0.055 251.3)", "oklch(87% 0.055 251.3)", "oklch(95% 0.055 251.3)"]
+      },
+      "workspace-ink-2": {
+        "role": "neutral",
+        "displayName": "Workspace Ink Hover",
+        "canonical": "#17324d",
+        "tonalRamp": ["oklch(15% 0.059 250.3)", "oklch(27% 0.059 250.3)", "oklch(39% 0.059 250.3)", "oklch(51% 0.059 250.3)", "oklch(63% 0.059 250.3)", "oklch(75% 0.059 250.3)", "oklch(87% 0.059 250.3)", "oklch(95% 0.059 250.3)"]
+      },
+      "stone": {
+        "role": "neutral",
+        "displayName": "Pale Stone",
+        "canonical": "#f2f0eb",
+        "tonalRamp": ["oklch(15% 0.007 88.6)", "oklch(27% 0.007 88.6)", "oklch(39% 0.007 88.6)", "oklch(51% 0.007 88.6)", "oklch(63% 0.007 88.6)", "oklch(75% 0.007 88.6)", "oklch(87% 0.007 88.6)", "oklch(95% 0.007 88.6)"]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "canonical": "#fbfaf7",
+        "tonalRamp": ["oklch(15% 0.004 91.4)", "oklch(27% 0.004 91.4)", "oklch(39% 0.004 91.4)", "oklch(51% 0.004 91.4)", "oklch(63% 0.004 91.4)", "oklch(75% 0.004 91.4)", "oklch(87% 0.004 91.4)", "oklch(95% 0.004 91.4)"]
+      },
+      "landing-paper-2": {
+        "role": "neutral",
+        "displayName": "Landing Secondary Paper",
+        "canonical": "#e9e6de",
+        "tonalRamp": ["oklch(15% 0.011 89.7)", "oklch(27% 0.011 89.7)", "oklch(39% 0.011 89.7)", "oklch(51% 0.011 89.7)", "oklch(63% 0.011 89.7)", "oklch(75% 0.011 89.7)", "oklch(87% 0.011 89.7)", "oklch(95% 0.011 89.7)"]
+      },
+      "workspace-surface-2": {
+        "role": "neutral",
+        "displayName": "Workspace Secondary Surface",
+        "canonical": "#ece9e2",
+        "tonalRamp": ["oklch(15% 0.010 87.5)", "oklch(27% 0.010 87.5)", "oklch(39% 0.010 87.5)", "oklch(51% 0.010 87.5)", "oklch(63% 0.010 87.5)", "oklch(75% 0.010 87.5)", "oklch(87% 0.010 87.5)", "oklch(95% 0.010 87.5)"]
+      },
+      "landing-line": {
+        "role": "neutral",
+        "displayName": "Landing Registration Rule",
+        "canonical": "#cec9be",
+        "tonalRamp": ["oklch(15% 0.016 86.4)", "oklch(27% 0.016 86.4)", "oklch(39% 0.016 86.4)", "oklch(51% 0.016 86.4)", "oklch(63% 0.016 86.4)", "oklch(75% 0.016 86.4)", "oklch(87% 0.016 86.4)", "oklch(95% 0.016 86.4)"]
+      },
+      "workspace-line": {
+        "role": "neutral",
+        "displayName": "Workspace Registration Rule",
+        "canonical": "#d2cec5",
+        "tonalRamp": ["oklch(15% 0.013 86.8)", "oklch(27% 0.013 86.8)", "oklch(39% 0.013 86.8)", "oklch(51% 0.013 86.8)", "oklch(63% 0.013 86.8)", "oklch(75% 0.013 86.8)", "oklch(87% 0.013 86.8)", "oklch(95% 0.013 86.8)"]
+      },
+      "landing-line-strong": {
+        "role": "neutral",
+        "displayName": "Landing Strong Rule",
+        "canonical": "#928c80",
+        "tonalRamp": ["oklch(15% 0.019 84.6)", "oklch(27% 0.019 84.6)", "oklch(39% 0.019 84.6)", "oklch(51% 0.019 84.6)", "oklch(63% 0.019 84.6)", "oklch(75% 0.019 84.6)", "oklch(87% 0.019 84.6)", "oklch(95% 0.019 84.6)"]
+      },
+      "workspace-line-strong": {
+        "role": "neutral",
+        "displayName": "Workspace Strong Rule",
+        "canonical": "#aaa59b",
+        "tonalRamp": ["oklch(15% 0.015 84.6)", "oklch(27% 0.015 84.6)", "oklch(39% 0.015 84.6)", "oklch(51% 0.015 84.6)", "oklch(63% 0.015 84.6)", "oklch(75% 0.015 84.6)", "oklch(87% 0.015 84.6)", "oklch(95% 0.015 84.6)"]
+      },
+      "cobalt": {
+        "role": "primary",
+        "displayName": "Cobalt Action",
+        "canonical": "#0a50d8",
+        "tonalRamp": ["oklch(15% 0.218 262.2)", "oklch(27% 0.218 262.2)", "oklch(39% 0.218 262.2)", "oklch(51% 0.218 262.2)", "oklch(63% 0.218 262.2)", "oklch(75% 0.218 262.2)", "oklch(87% 0.218 262.2)", "oklch(95% 0.218 262.2)"]
+      },
+      "cobalt-dark": {
+        "role": "primary",
+        "displayName": "Cobalt Action Hover",
+        "canonical": "#083fa9",
+        "tonalRamp": ["oklch(15% 0.178 262.0)", "oklch(27% 0.178 262.0)", "oklch(39% 0.178 262.0)", "oklch(51% 0.178 262.0)", "oklch(63% 0.178 262.0)", "oklch(75% 0.178 262.0)", "oklch(87% 0.178 262.0)", "oklch(95% 0.178 262.0)"]
+      },
+      "workspace-cobalt-soft": {
+        "role": "primary",
+        "displayName": "Soft Cobalt Selection",
+        "canonical": "#eaf0ff",
+        "tonalRamp": ["oklch(15% 0.021 268.4)", "oklch(27% 0.021 268.4)", "oklch(39% 0.021 268.4)", "oklch(51% 0.021 268.4)", "oklch(63% 0.021 268.4)", "oklch(75% 0.021 268.4)", "oklch(87% 0.021 268.4)", "oklch(95% 0.021 268.4)"]
+      },
+      "amber": {
+        "role": "tertiary",
+        "displayName": "Amber Focus and Review",
+        "canonical": "#ffb000",
+        "tonalRamp": ["oklch(15% 0.170 76.4)", "oklch(27% 0.170 76.4)", "oklch(39% 0.170 76.4)", "oklch(51% 0.170 76.4)", "oklch(63% 0.170 76.4)", "oklch(75% 0.170 76.4)", "oklch(87% 0.170 76.4)", "oklch(95% 0.170 76.4)"]
+      },
+      "landing-lime": {
+        "role": "secondary",
+        "displayName": "Verified Acid Lime",
+        "canonical": "#c8ff3d",
+        "tonalRamp": ["oklch(15% 0.215 124.8)", "oklch(27% 0.215 124.8)", "oklch(39% 0.215 124.8)", "oklch(51% 0.215 124.8)", "oklch(63% 0.215 124.8)", "oklch(75% 0.215 124.8)", "oklch(87% 0.215 124.8)", "oklch(95% 0.215 124.8)"]
+      },
+      "landing-lime-ink": {
+        "role": "secondary",
+        "displayName": "Acid Lime Ink",
+        "canonical": "#183000",
+        "tonalRamp": ["oklch(15% 0.078 132.9)", "oklch(27% 0.078 132.9)", "oklch(39% 0.078 132.9)", "oklch(51% 0.078 132.9)", "oklch(63% 0.078 132.9)", "oklch(75% 0.078 132.9)", "oklch(87% 0.078 132.9)", "oklch(95% 0.078 132.9)"]
+      },
+      "landing-muted": {
+        "role": "neutral",
+        "displayName": "Landing Muted Ink",
+        "canonical": "#586573",
+        "tonalRamp": ["oklch(15% 0.027 250.3)", "oklch(27% 0.027 250.3)", "oklch(39% 0.027 250.3)", "oklch(51% 0.027 250.3)", "oklch(63% 0.027 250.3)", "oklch(75% 0.027 250.3)", "oklch(87% 0.027 250.3)", "oklch(95% 0.027 250.3)"]
+      },
+      "workspace-muted": {
+        "role": "neutral",
+        "displayName": "Workspace Muted Ink",
+        "canonical": "#5b6572",
+        "tonalRamp": ["oklch(15% 0.024 255.0)", "oklch(27% 0.024 255.0)", "oklch(39% 0.024 255.0)", "oklch(51% 0.024 255.0)", "oklch(63% 0.024 255.0)", "oklch(75% 0.024 255.0)", "oklch(87% 0.024 255.0)", "oklch(95% 0.024 255.0)"]
+      },
+      "landing-dark-muted": {
+        "role": "neutral",
+        "displayName": "Dark Field Supporting Ink",
+        "canonical": "#adbbc8",
+        "tonalRamp": ["oklch(15% 0.024 246.1)", "oklch(27% 0.024 246.1)", "oklch(39% 0.024 246.1)", "oklch(51% 0.024 246.1)", "oklch(63% 0.024 246.1)", "oklch(75% 0.024 246.1)", "oklch(87% 0.024 246.1)", "oklch(95% 0.024 246.1)"]
+      },
+      "landing-danger": {
+        "role": "tertiary",
+        "displayName": "Landing Contrary Red",
+        "canonical": "#b32934",
+        "tonalRamp": ["oklch(15% 0.174 22.2)", "oklch(27% 0.174 22.2)", "oklch(39% 0.174 22.2)", "oklch(51% 0.174 22.2)", "oklch(63% 0.174 22.2)", "oklch(75% 0.174 22.2)", "oklch(87% 0.174 22.2)", "oklch(95% 0.174 22.2)"]
+      },
+      "workspace-notice": {
+        "role": "tertiary",
+        "displayName": "Workspace Notice",
+        "canonical": "#fff5d8",
+        "tonalRamp": ["oklch(15% 0.039 91.2)", "oklch(27% 0.039 91.2)", "oklch(39% 0.039 91.2)", "oklch(51% 0.039 91.2)", "oklch(63% 0.039 91.2)", "oklch(75% 0.039 91.2)", "oklch(87% 0.039 91.2)", "oklch(95% 0.039 91.2)"]
+      },
+      "workspace-danger": {
+        "role": "tertiary",
+        "displayName": "Workspace Danger",
+        "canonical": "#a62b2b",
+        "tonalRamp": ["oklch(15% 0.160 25.5)", "oklch(27% 0.160 25.5)", "oklch(39% 0.160 25.5)", "oklch(51% 0.160 25.5)", "oklch(63% 0.160 25.5)", "oklch(75% 0.160 25.5)", "oklch(87% 0.160 25.5)", "oklch(95% 0.160 25.5)"]
+      },
+      "workspace-success": {
+        "role": "secondary",
+        "displayName": "Workspace Success",
+        "canonical": "#177044",
+        "tonalRamp": ["oklch(15% 0.108 156.1)", "oklch(27% 0.108 156.1)", "oklch(39% 0.108 156.1)", "oklch(51% 0.108 156.1)", "oklch(63% 0.108 156.1)", "oklch(75% 0.108 156.1)", "oklch(87% 0.108 156.1)", "oklch(95% 0.108 156.1)"]
+      },
+      "workspace-warning": {
+        "role": "tertiary",
+        "displayName": "Workspace Warning",
+        "canonical": "#9a6000",
+        "tonalRamp": ["oklch(15% 0.118 69.2)", "oklch(27% 0.118 69.2)", "oklch(39% 0.118 69.2)", "oklch(51% 0.118 69.2)", "oklch(63% 0.118 69.2)", "oklch(75% 0.118 69.2)", "oklch(87% 0.118 69.2)", "oklch(95% 0.118 69.2)"]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "canonical": "#ffffff",
+        "tonalRamp": ["oklch(15% 0.000 89.9)", "oklch(27% 0.000 89.9)", "oklch(39% 0.000 89.9)", "oklch(51% 0.000 89.9)", "oklch(63% 0.000 89.9)", "oklch(75% 0.000 89.9)", "oklch(87% 0.000 89.9)", "oklch(95% 0.000 89.9)"]
+      }
+    },
+    "typographyMeta": {
+      "display-landing": {
+        "displayName": "Landing Thesis",
+        "purpose": "The short first-viewport thesis on the Evidence Theater route."
+      },
+      "headline-landing": {
+        "displayName": "Landing Section Display",
+        "purpose": "Large Aurora, method, scope, and trust section headings."
+      },
+      "title-landing": {
+        "displayName": "Landing Stage Title",
+        "purpose": "The active evidence-stage headline."
+      },
+      "display-workspace": {
+        "displayName": "Workspace Display",
+        "purpose": "First-use and returning-state summary headlines."
+      },
+      "headline-workspace": {
+        "displayName": "Workspace Headline",
+        "purpose": "Primary workspace section headings."
+      },
+      "body": {
+        "displayName": "Decision Sans Body",
+        "purpose": "Default reading, form, and protocol explanation."
+      },
+      "label-landing": {
+        "displayName": "Landing Protocol Label",
+        "purpose": "Uppercase metadata, state, and sequence labels."
+      },
+      "label-control": {
+        "displayName": "Landing Control Label",
+        "purpose": "Compact high-weight landing actions."
+      },
+      "label-workspace": {
+        "displayName": "Workspace Record Label",
+        "purpose": "Summary terms, metadata, and dense record labels."
+      }
+    },
+    "shadows": [
+      {
+        "name": "workspace-workbench-lift",
+        "value": "0 14px 38px rgb(10 27 46 / 8%)",
+        "purpose": "Separates the example browser and inspector from the pale-stone canvas."
+      },
+      {
+        "name": "workspace-invalid-halo",
+        "value": "0 0 0 2px rgb(166 43 43 / 14%)",
+        "purpose": "Reinforces an invalid field without replacing the written error."
+      }
+    ],
+    "motion": [
+      {
+        "name": "landing-trace-draw",
+        "value": "1.25s cubic-bezier(.22, 1, .36, 1) .2s forwards",
+        "purpose": "Draws the fictional protocol trace only after JavaScript enhancement."
+      },
+      {
+        "name": "workspace-control",
+        "value": "180ms ease-out",
+        "purpose": "Background, border, and one-pixel active-press response on workspace controls."
+      },
+      {
+        "name": "workspace-text-swap",
+        "value": "180ms cubic-bezier(.2,.8,.2,1)",
+        "purpose": "Moves status text by 4px with 2px blur during a browser-local status swap."
+      },
+      {
+        "name": "reduced-motion",
+        "value": ".01ms",
+        "purpose": "Both routes collapse transitions and animation to one effectively static iteration."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "workspace-compact",
+        "value": "32rem"
+      },
+      {
+        "name": "compact-stack",
+        "value": "48rem"
+      },
+      {
+        "name": "desktop-rail-and-split",
+        "value": "70rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Landing Primary Action",
+      "kind": "button",
+      "refersTo": "button-landing-primary",
+      "description": "The deep-ink route or evidence action, turning cobalt on hover.",
+      "html": "<a class=\"ds-landing-primary\" href=\"/workspace\">Open the workspace</a>",
+      "css": ".ds-landing-primary { min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; padding: .75rem 1rem; border: 1px solid #0a1b2e; color: #fff; background: #0a1b2e; font: 800 .82rem/1 \"Decision Sans\", \"Helvetica Neue\", Arial, sans-serif; text-decoration: none; } .ds-landing-primary:hover { border-color: #0a50d8; background: #0a50d8; } .ds-landing-primary:focus-visible { outline: 3px solid #ffb000; outline-offset: 3px; } .ds-landing-primary:active { background: #083fa9; }"
+    },
+    {
+      "name": "Landing Secondary Action",
+      "kind": "button",
+      "refersTo": "button-landing-secondary",
+      "description": "The transparent evidence action that inverts to ink.",
+      "html": "<a class=\"ds-landing-secondary\" href=\"#aurora\">Explore the evidence</a>",
+      "css": ".ds-landing-secondary { min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; padding: .75rem 1rem; border: 1px solid #0a1b2e; color: #0a1b2e; background: transparent; font: 800 .82rem/1 \"Decision Sans\", \"Helvetica Neue\", Arial, sans-serif; text-decoration: none; } .ds-landing-secondary:hover { color: #fff; background: #0a1b2e; } .ds-landing-secondary:focus-visible { outline: 3px solid #ffb000; outline-offset: 3px; } .ds-landing-secondary:active { transform: translateY(1px); }"
+    },
+    {
+      "name": "Landing Selected Stage Tab",
+      "kind": "nav",
+      "refersTo": "stage-tab-landing-selected",
+      "description": "One of five evidence-stage cells in its selected state.",
+      "html": "<button class=\"ds-stage-tab\" type=\"button\" role=\"tab\" aria-selected=\"true\"><span>04</span><strong>Review</strong></button>",
+      "css": ".ds-stage-tab { min-height: 5.25rem; min-width: 7rem; padding: 1rem; border: 0; border-right: 1px solid #cec9be; color: #fff; background: #0a50d8; text-align: left; font-family: \"Decision Sans\", \"Helvetica Neue\", Arial, sans-serif; cursor: pointer; } .ds-stage-tab span { display: block; font-size: .68rem; font-weight: 800; letter-spacing: .1em; } .ds-stage-tab strong { display: block; margin-top: .35rem; color: #fff; font-size: .92rem; } .ds-stage-tab:hover { background: #083fa9; } .ds-stage-tab:focus-visible { outline: 3px solid #ffb000; outline-offset: 3px; } .ds-stage-tab:active { transform: translateY(1px); }"
+    },
+    {
+      "name": "Landing Verified Metric",
+      "kind": "card",
+      "refersTo": "metric-landing",
+      "description": "A registered metric cell with a written verified status.",
+      "html": "<dl class=\"ds-metric\"><div><dt>Condition</dt><dd>Deterministic</dd><p><span>Verified</span> Saved inputs crossed the written review boundary.</p></div></dl>",
+      "css": ".ds-metric { width: 20rem; margin: 0; border: 1px solid #928c80; color: #0a1b2e; background: #fbfaf7; font-family: \"Decision Sans\", \"Helvetica Neue\", Arial, sans-serif; } .ds-metric div { padding: 1.4rem; } .ds-metric dt { color: #586573; font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; } .ds-metric dd { margin: .65rem 0 .8rem; font-size: 2.25rem; font-weight: 700; letter-spacing: -.04em; line-height: 1; } .ds-metric p { margin: 0; color: #586573; font-size: .78rem; line-height: 1.45; } .ds-metric p span { color: #183000; background: #c8ff3d; font-size: .62rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; } .ds-metric:focus-within { outline: 3px solid #ffb000; outline-offset: 3px; }"
+    },
+    {
+      "name": "Landing Condition Row",
+      "kind": "custom",
+      "refersTo": "condition-row-landing",
+      "description": "A deep-ink deterministic state row that keeps name and explanation together.",
+      "html": "<div class=\"ds-condition-row\"><div><span aria-hidden=\"true\"></span><strong>Convergence</strong></div><b>Escalated review</b><p>Two written conditions invoke a human review.</p></div>",
+      "css": ".ds-condition-row { min-height: 5rem; display: grid; grid-template-columns: minmax(10rem, .8fr) auto 1.15fr; gap: 1rem; align-items: center; padding: 1rem 1.4rem; border-bottom: 1px solid #29435e; color: #fff; background: #0a1b2e; font-family: \"Decision Sans\", \"Helvetica Neue\", Arial, sans-serif; } .ds-condition-row > div { display: flex; gap: .7rem; align-items: center; } .ds-condition-row > div span { width: .6rem; height: .6rem; border: 2px solid #ffb000; background: #ffb000; } .ds-condition-row strong { font-size: .85rem; } .ds-condition-row b { color: #adbbc8; font-size: .62rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; } .ds-condition-row p { margin: 0; color: #adbbc8; font-size: .76rem; line-height: 1.4; } .ds-condition-row:focus-within { outline: 3px solid #ffb000; outline-offset: 3px; }"
+    },
+    {
+      "name": "Workspace Primary Action",
+      "kind": "button",
+      "refersTo": "button-workspace-primary",
+      "description": "The cobalt action used to choose, save, approve, or record.",
+      "html": "<button class=\"ds-workspace-primary\" type=\"button\">Use this example</button>",
+      "css": ".ds-workspace-primary { min-height: 2.75rem; padding: .67rem .9rem; border: 1px solid #0a50d8; border-radius: .25rem; color: #fff; background: #0a50d8; font-family: \"Decision Sans\", \"Helvetica Neue\", Arial, sans-serif; cursor: pointer; transition: background 180ms ease-out, border-color 180ms ease-out, transform 180ms ease-out; } .ds-workspace-primary:hover { border-color: #083fa9; background: #083fa9; } .ds-workspace-primary:focus-visible { outline: 3px solid #ffb000; outline-offset: 3px; } .ds-workspace-primary:active { transform: translateY(1px); }"
+    },
+    {
+      "name": "Workspace Secondary Action",
+      "kind": "button",
+      "refersTo": "button-workspace-secondary",
+      "description": "A restrained surface action for optional or reversible workspace paths.",
+      "html": "<button class=\"ds-workspace-secondary\" type=\"button\">Generate variants</button>",
+      "css": ".ds-workspace-secondary { min-height: 2.75rem; padding: .67rem .9rem; border: 1px solid #aaa59b; border-radius: .25rem; color: #0a1b2e; background: #fbfaf7; font-family: \"Decision Sans\", \"Helvetica Neue\", Arial, sans-serif; cursor: pointer; transition: background 180ms ease-out, border-color 180ms ease-out, transform 180ms ease-out; } .ds-workspace-secondary:hover { color: #fff; border-color: #17324d; background: #17324d; } .ds-workspace-secondary:focus-visible { outline: 3px solid #ffb000; outline-offset: 3px; } .ds-workspace-secondary:active { transform: translateY(1px); }"
+    },
+    {
+      "name": "Workspace Current Navigation Item",
+      "kind": "nav",
+      "refersTo": "nav-workspace-current",
+      "description": "The current rail destination with an inset cobalt registration rule.",
+      "html": "<nav class=\"ds-workspace-nav\" aria-label=\"Primary\"><a href=\"#examples\" aria-current=\"page\">Examples</a></nav>",
+      "css": ".ds-workspace-nav { width: 12.75rem; padding: .25rem .75rem; color: #f7f9fb; background: #0a1b2e; font-family: \"Decision Sans\", \"Helvetica Neue\", Arial, sans-serif; } .ds-workspace-nav a { min-height: 2.75rem; display: flex; align-items: center; padding: .65rem .75rem; color: #fff; border-left: 3px solid #5f8eff; background: #122a43; text-decoration: none; } .ds-workspace-nav a:hover { color: #fff; border-left-color: #5f8eff; background: #17324d; } .ds-workspace-nav a:focus-visible { outline: 3px solid #ffb000; outline-offset: 3px; } .ds-workspace-nav a:active { transform: translateY(1px); }"
+    },
+    {
+      "name": "Workspace Text Field",
+      "kind": "input",
+      "refersTo": "input-workspace",
+      "description": "A full-width labeled field with clipped corners and explicit invalid treatment.",
+      "html": "<label class=\"ds-workspace-field\" for=\"ds-policy-name\">Policy name<input id=\"ds-policy-name\" value=\"Evidence-first participation\"></label>",
+      "css": ".ds-workspace-field { display: block; color: #0a1b2e; font: 650 1rem/1.5 \"Decision Sans\", \"Helvetica Neue\", Arial, sans-serif; } .ds-workspace-field input { width: 100%; margin-top: .3rem; padding: .72rem .75rem; color: #0a1b2e; border: 1px solid #8d9299; border-radius: .18rem; background: #fff; font: 400 1rem/1.5 \"Decision Sans\", \"Helvetica Neue\", Arial, sans-serif; caret-color: #0a50d8; } .ds-workspace-field input:hover { border-color: #17324d; } .ds-workspace-field input:focus-visible { outline: 3px solid #ffb000; outline-offset: 3px; } .ds-workspace-field input[aria-invalid=\"true\"] { border-color: #a62b2b; box-shadow: 0 0 0 2px rgb(166 43 43 / 14%); }"
+    },
+    {
+      "name": "Workspace Selected Example Row",
+      "kind": "card",
+      "refersTo": "example-row-workspace-selected",
+      "description": "A square, full-width example selector with a cobalt inset rule.",
+      "html": "<button class=\"ds-example-row\" type=\"button\" aria-pressed=\"true\"><span>Evidence-first participation</span><small>Preserve uncertainty before review.</small><b aria-hidden=\"true\">View</b></button>",
+      "css": ".ds-example-row { position: relative; width: 100%; min-height: 6.25rem; display: grid; grid-template-columns: 1fr auto; gap: .35rem 1rem; align-content: center; padding: 1rem 3.5rem 1rem 1.1rem; color: #0a1b2e; border: 0; border-bottom: 1px solid #d2cec5; border-radius: 0; box-shadow: inset 3px 0 0 #0a50d8; background: #eaf0ff; text-align: left; font-family: \"Decision Sans\", \"Helvetica Neue\", Arial, sans-serif; cursor: pointer; } .ds-example-row span { font-weight: 700; } .ds-example-row small { grid-column: 1; color: #5b6572; font-size: .88rem; } .ds-example-row b { position: absolute; right: 1rem; top: 50%; color: #0a50d8; font-size: .82rem; transform: translateY(-50%); } .ds-example-row:hover { background: #f5f7fb; } .ds-example-row:focus-visible { outline: 3px solid #ffb000; outline-offset: 3px; } .ds-example-row:active { transform: translateY(1px); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Decision Review Bench",
+    "overview": "Decision Covenant is a local policy-and-evidence workspace for making the review process before the moment gets loud. Its ownable world is a serious editorial review bench: pale stone working canvas, deep ink, cobalt action, acid-lime verified evidence on the landing, thin registration rules, clipped controls, tabular evidence, and restrained semantic color. Spatial grouping and rules carry hierarchy; rounding and shadow are deliberately scarce.\n\nThe prediction is not the decision. The Persuade-mode landing refuses the generic forecast dashboard and makes a fictional review protocol the spectacle. The Operate-mode workspace preserves the established bench where a person inspects examples, writes a policy, saves observations, sees deterministic condition state, and records a human disposition. Neither route may imply external AI activity, a forecast, performance, suitability, a recommendation, or production readiness.",
+    "keyCharacteristics": [
+      "Route-owned expression: Evidence Theater persuades at /; the decision review bench operates at /workspace.",
+      "Pale stone, deep ink, cobalt action, sharp rules, and editorial Manrope unify both routes.",
+      "Acid lime is landing-only verified evidence; workspace success remains restrained green.",
+      "Fictional, personal, deterministic, and future provider provenance never collapse into one state.",
+      "Desktop compositions use strong asymmetry; compact compositions keep purpose, protocol, promise, and action together.",
+      "Raster imagery is evidence-only, never part of the shipped interface."
+    ],
+    "rules": [
+      {
+        "name": "The Route-Owned Authority Rule",
+        "body": "apps/web/landing.ts decides /; apps/web/server.ts decides /workspace. Shared language does not erase route-specific tokens or behavior.",
+        "section": "overview"
+      },
+      {
+        "name": "The Acid-Lime Rule",
+        "body": "Acid lime verifies evidence on the landing; it never becomes a generic decorative accent or a promise of outcome.",
+        "section": "colors"
+      },
+      {
+        "name": "The Six-Rem Thesis Rule",
+        "body": "The landing earns its scale through one short thesis; workspace type stays compact enough to inspect records and complete forms.",
+        "section": "typography"
+      },
+      {
+        "name": "The First-Viewport Protocol Rule",
+        "body": "Compact composition may remove the large trace from the thesis column, but it must retain the fictional protocol summary, promise, and both actions before the full evidence field.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat Landing Rule",
+        "body": "Evidence Theater uses field contrast and registration, never decorative card shadow.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Sharp Registration Rule",
+        "body": "Rounded-card language is not the bridge between the two routes; aligned rules, clipped controls, and explicit state fields are.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Prediction Is Not the Decision Rule",
+        "body": "A condition may invoke review; only a person records a disposition. No visual state is an instruction, forecast, recommendation, or performance claim.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do keep / expressive and /workspace operational while preserving the same stone, ink, cobalt, rule, and Manrope world.",
+      "Do keep fictional provenance in the landing header, stage metadata, trace description, evidence copy, and workspace walkthrough markers.",
+      "Do preserve all five landing stages without JavaScript and expose one keyboard-operable tab panel at a time with JavaScript.",
+      "Do keep controls at least 2.75rem high, focus visible, status text explicit, and tables horizontally scrollable.",
+      "Do keep personal, fictional, deterministic, and future model-generated provenance visibly distinct.",
+      "Do keep unknown or unavailable evidence visible; never translate it into zero, normal, cleared, or safe.",
+      "Do treat mock and review PNGs as non-shipping evidence and keep shipping visual assets code-led.",
+      "Do defer to each route’s authoritative source when this document, a plan, a mock, or a screenshot differs."
+    ],
+    "donts": [
+      "Don't turn either route into a forecast dashboard, trading assistant, performance report, suitability screen, or recommendation engine.",
+      "Don't introduce rounded-card grids, pill navigation, glassmorphism, gradients, neon, crypto-dashboard styling, or gamified investing cues.",
+      "Don't use decorative finance photography, charts that imply live evidence, or raster imagery as interface decoration.",
+      "Don't use acid lime as decoration or outcome promise; reserve it for verified deterministic evidence on the landing.",
+      "Don't hide tradeoffs, falsifiers, unavailable data, or state meaning behind color alone.",
+      "Don't compress the desktop bench into a dense mobile dashboard; preserve a linear evidence and action sequence.",
+      "Don't imply runtime AI exists because a provider disclosure exists; no provider adapter or model result currently ships.",
+      "Don't place provider credentials in SQLite, HTML, logs, exports, fixtures, or delegated work.",
+      "Don't mix fictional walkthrough records with personal persistence.",
+      "Don't claim production readiness from the existence of implemented routes, screenshots, documentation, or a review artifact."
+    ]
+  }
+}
