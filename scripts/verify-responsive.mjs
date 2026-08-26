@@ -61,6 +61,10 @@ try {
       await page.getByRole("heading", { name: /Two conditions converge/ }).waitFor();
       strictEqual(await page.locator(".showpiece-panel.is-active").getAttribute("data-showpiece-stage"), "aurora-converge", `${viewport.name}: selected evidence panel did not update`);
       await page.screenshot({ path: `.impeccable/review/landing-evidence-${viewport.name}.png`, fullPage: false });
+      const unavailable = page.locator('.showpiece-panel.is-active .condition-row[data-state="unavailable"]');
+      await unavailable.scrollIntoViewIfNeeded();
+      await unavailable.getByText("Unavailable", { exact: true }).waitFor();
+      await page.screenshot({ path: `.impeccable/review/landing-unavailable-${viewport.name}.png`, fullPage: false });
     } finally {
       await page.close();
     }

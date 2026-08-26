@@ -172,6 +172,7 @@ Current review-only captures are:
 
 - Landing first viewport: `.impeccable/review/landing-desktop.png` (1440 × 900), `landing-tablet.png` (768 × 900), and `landing-mobile.png` (390 × 844).
 - Landing evidence stage: `.impeccable/review/landing-evidence-desktop.png` (1440 × 900), `landing-evidence-tablet.png` (768 × 900), and `landing-evidence-mobile.png` (390 × 844).
+- Landing unavailable-evidence detail: `.impeccable/review/landing-unavailable-desktop.png` (1440 × 900), `landing-unavailable-tablet.png` (768 × 900), and `landing-unavailable-mobile.png` (390 × 844).
 - Workspace first use: `.impeccable/review/workspace-desktop.png` (1440 × 900), `workspace-tablet.png` (768 × 900), and `workspace-mobile.png` (390 × 844).
 - Returning workspace: `.impeccable/review/workspace-returning-desktop.png` (1440 × 900) and `workspace-returning-mobile.png` (390 × 844).
 - The earlier workspace record remains in `desktop.png`, `tablet.png`, `mobile.png`, `returning-desktop.png`, and `returning-mobile.png` at the same respective viewport classes.
