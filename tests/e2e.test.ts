@@ -3,12 +3,37 @@ import { test } from "node:test";
 import { chromium } from "playwright";
 import { startServer } from "../apps/web/server.js";
 
+test("landing showpiece moves through five fictional evidence stages and enters the workspace", async () => {
+  const app = await startServer({ dbPath: ":memory:" });
+  const browser = await chromium.launch({ headless: true });
+  const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  try {
+    await page.goto(app.url);
+    await page.getByRole("heading", { name: "The prediction is not the decision." }).waitFor();
+    strictEqual(await page.locator("[data-showpiece-stage]").count(), 5);
+    await page.getByRole("tab", { name: /03 Converge/ }).click();
+    await page.getByRole("heading", { name: /Two conditions converge/ }).waitFor();
+    await page.locator(".showpiece-panel.is-active").getByText(/Unavailable/, { exact: false }).first().waitFor();
+    await page.getByRole("tab", { name: /05 Record/ }).click();
+    await page.locator(".showpiece-panel.is-active").getByText(/Defer review/, { exact: false }).first().waitFor();
+    await Promise.all([
+      page.waitForURL(/\/workspace$/),
+      page.getByRole("link", { name: "Open the workspace" }).first().click(),
+    ]);
+    await page.getByRole("heading", { name: /Make the decision process/ }).waitFor();
+  } finally {
+    await page.close();
+    await browser.close();
+    await app.close();
+  }
+});
+
 test("first use explores twelve fictional examples without persisting demo data", async () => {
   const app = await startServer({ dbPath: ":memory:" });
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
   try {
-    await page.goto(app.url);
+    await page.goto(`${app.url}/workspace`);
 
     await page.getByText("Make the decision process before the moment gets loud.", { exact: true }).waitFor();
     await page.locator("[data-example-detail]:visible").getByText("Fictional walkthrough", { exact: true }).waitFor();
@@ -60,7 +85,7 @@ test("an example becomes an editable personal draft without copying fictional re
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
   try {
-    await page.goto(app.url);
+    await page.goto(`${app.url}/workspace`);
     await page.getByRole("button", { name: /Evidence-first participation/ }).click();
     await page.locator("[data-example-detail]:visible").getByRole("button", { name: "Use as my starting point" }).click();
 
@@ -111,7 +136,7 @@ test("browser workflow creates, locks, supersedes, and exports a covenant", asyn
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
   try {
-    await page.goto(app.url);
+    await page.goto(`${app.url}/workspace`);
     await page.getByRole("button", { name: "Start blank" }).click();
     await page.locator("#name").fill("Browser Covenant");
     await page.locator("#purpose").fill("Keep review decisions deliberate.");
@@ -166,7 +191,7 @@ test("browser snapshot workflow imports, calculates, compares, and exports", asy
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
   try {
-    await page.goto(app.url);
+    await page.goto(`${app.url}/workspace`);
     await page.locator("#manual-as-of").fill("2026-01-01");
     await page.locator("#manual-portfolio-name").fill("Browser Portfolio");
     await page.locator("#manual-source").fill("manual browser entry");
@@ -208,7 +233,7 @@ test("browser position rows add, edit, remove, and save deterministic observatio
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
   try {
-    await page.goto(app.url);
+    await page.goto(`${app.url}/workspace`);
     await page.locator("#manual-as-of").fill("2026-04-01");
     await page.locator("#manual-portfolio-name").fill("Row Entry Portfolio");
     await page.locator("#manual-source").fill("human-readable rows");
@@ -280,7 +305,7 @@ test("browser trigger workflow defines all seven triggers, evaluates, and export
           : {},
   }));
   try {
-    await page.goto(app.url);
+    await page.goto(`${app.url}/workspace`);
     await page.getByRole("button", { name: "Start blank" }).click();
     await page.locator("#name").fill("Trigger Covenant");
     await page.locator("#purpose").fill("Keep review decisions deliberate.");
@@ -350,7 +375,7 @@ test("guided condition controls serialize all seven deterministic trigger types"
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ timezoneId: "UTC" });
   try {
-    await page.goto(app.url);
+    await page.goto(`${app.url}/workspace`);
     const covenantId = await page.evaluate(async () => {
       const input = {
         name: "Guided conditions", purpose: "Test human-readable trigger controls.", coveredExposure: "Saved portfolio", objective: "Keep reviews deterministic.", timeHorizon: "5 years",
@@ -413,7 +438,7 @@ test("browser structured review workflow records a bounded decision and closes l
     settings: {},
   };
   try {
-    await page.goto(app.url);
+    await page.goto(`${app.url}/workspace`);
     const ids = await page.evaluate(async ({ covenantInput, trigger }) => {
       const create = await fetch("/api/covenants", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(covenantInput) });
       const draft = await create.json();

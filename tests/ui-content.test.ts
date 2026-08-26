@@ -23,7 +23,7 @@ test("root presents the prediction-discipline landing page and workspace stays s
   const app = await startServer({ dbPath: ":memory:" });
   try {
     const landing = await fetch(`${app.url}/`).then((response) => response.text());
-    match(landing, /The prediction is not the decision\./);
+    match(landing, /The prediction is <span>not the decision\.<\/span>/);
     match(landing, /The Aurora Compute Cycle/);
     match(landing, /Fictional scenario/);
     match(landing, /href="\/workspace"/);
