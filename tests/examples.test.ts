@@ -1,8 +1,8 @@
-import { deepStrictEqual, ok, strictEqual } from "node:assert/strict";
+import { deepStrictEqual, doesNotMatch, match, ok, strictEqual } from "node:assert/strict";
 import { test } from "node:test";
 import { validateCovenantInput } from "../packages/domain/lifecycle.js";
 import type { CovenantInput } from "../packages/domain/types.js";
-import { EXAMPLE_PACKS } from "../packages/examples/index.js";
+import { AURORA_SHOWPIECE, EXAMPLE_PACKS } from "../packages/examples/index.js";
 import { validateTriggerDefinition } from "../packages/triggers/engine.js";
 import type { TriggerDefinitionInput } from "../packages/triggers/types.js";
 
@@ -91,4 +91,32 @@ test("calendar stories reach their configured review date and numeric stories sh
   const overdue = examples.find((example) => example.id === "scheduled-overdue")!;
   const elapsedDays = (Date.parse(`${overdue.story.snapshots.at(-1)?.asOf}T00:00:00.000Z`) - Date.parse(`${overdue.story.snapshots[0]?.asOf}T00:00:00.000Z`)) / DAY;
   strictEqual(elapsedDays, 29, "overdue story dates should advance from day 92 to day 121");
+});
+
+test("ships one immutable five-stage prediction-discipline showpiece", () => {
+  strictEqual(AURORA_SHOWPIECE.fictional, true);
+  strictEqual(AURORA_SHOWPIECE.id, "aurora-compute-cycle");
+  deepStrictEqual(AURORA_SHOWPIECE.stages.map((stage) => stage.state), [
+    "precommit",
+    "observe",
+    "converge",
+    "challenge",
+    "record",
+  ]);
+  strictEqual(isDeepFrozen(AURORA_SHOWPIECE), true);
+});
+
+test("showpiece preserves unavailable evidence and bounded human disposition", () => {
+  const observe = AURORA_SHOWPIECE.stages[1]!;
+  ok(observe.metrics.some((metric) => metric.status === "unavailable"));
+  const record = AURORA_SHOWPIECE.stages[4]!;
+  strictEqual(record.review?.decision, "defer_review");
+  ok(record.review?.followUpAt);
+  ok(AURORA_SHOWPIECE.productBoundary.didNot.some((item) => /forecast|probability/i.test(item)));
+});
+
+test("showpiece language is fictional and non-prescriptive", () => {
+  const serialized = JSON.stringify(AURORA_SHOWPIECE);
+  match(serialized, /fictional/i);
+  doesNotMatch(serialized, /\b(buy|sell|recommended|should trade|will outperform)\b/i);
 });

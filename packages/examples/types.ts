@@ -59,3 +59,49 @@ export type ExamplePack = DeepReadonly<{
   description: string;
   examples: CovenantExample[];
 }>;
+
+export type ShowpieceMetricStatus = "available" | "unavailable" | "watch" | "review" | "cooldown";
+
+export type ShowpieceStage = DeepReadonly<{
+  id: string;
+  state: "precommit" | "observe" | "converge" | "challenge" | "record";
+  step: string;
+  eyebrow: string;
+  headline: string;
+  narrative: string;
+  asOf: string;
+  metrics: Array<{
+    label: string;
+    value: string;
+    detail: string;
+    status: ShowpieceMetricStatus;
+  }>;
+  conditions: Array<{
+    label: string;
+    state: TriggerStateName | "unavailable";
+    detail: string;
+  }>;
+  evidence: string[];
+  contraryEvidence: string[];
+  falsifierCheck: string | null;
+  review: null | {
+    decision: "continue_policy" | "deescalate" | "defer_review" | "create_successor";
+    rationale: string;
+    followUpAt: string | null;
+    cooldownDays: number;
+  };
+}>;
+
+export type PredictionDisciplineShowpiece = DeepReadonly<{
+  id: string;
+  fictional: true;
+  title: string;
+  subtitle: string;
+  audience: string;
+  framing: string;
+  stages: ShowpieceStage[];
+  productBoundary: {
+    did: string[];
+    didNot: string[];
+  };
+}>;
