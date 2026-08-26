@@ -1,9 +1,9 @@
 # Prediction Discipline Showpiece and Landing Page Design
 
-**Date:** 2026-08-26  
-**Status:** Approved  
-**Product:** Decision Covenant  
-**Repository:** BubblerEyes  
+**Date:** 2026-08-26
+**Status:** Approved
+**Product:** Decision Covenant
+**Repository:** BubblerEyes
 **Audience:** Prediction analytics practitioners, evaluators, and technically sophisticated prospective users
 
 ## Outcome
