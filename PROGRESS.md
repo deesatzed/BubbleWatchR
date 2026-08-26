@@ -235,3 +235,57 @@ provider-ready state. Runtime local/OpenRouter generation remains a separate
 goal requiring secure credential storage, provenance, redaction, timeout,
 budget, and failure-state proof. Hypothetical rebalance simulation remains the
 active roadmap successor.
+
+## 2026-08-26 — Prediction discipline landing — complete
+
+Implemented and committed the first three batches on
+`feat/ai-variant-workspace`:
+
+- `38c0038` adds the deeply immutable typed Aurora showpiece with five stages,
+  explicit fictional provenance, unavailable evidence, and a bounded recorded
+  deferral;
+- `83ff5a0` makes `/` the landing route and preserves the complete product at
+  `/workspace`, with APIs and storage unchanged;
+- `5df4fb2` builds the Evidence Theater landing and its Chromium workflow.
+- `1affd7c` records the responsive/no-script hardening, bounded reviewer repair,
+  and landing/workspace raster matrix;
+- `36c6862` records the two-route design system and generated design sidecar;
+- `a1ed25c` adds targeted unavailable-evidence capture to the visual proof.
+
+Fresh final verification:
+
+- `npm_config_cache=/private/tmp/bubblereyes-npm-cache npm ci` — passed; 6
+  packages installed, 7 audited, 0 vulnerabilities;
+- elevated `npm run verify:core` — passed: lint checked 34 TypeScript files,
+  typecheck passed, 42 deterministic tests passed, 9 Chromium workflows
+  passed, covenant/calculation/trigger/review evidence gates passed, and the
+  final build passed;
+- elevated `npm run verify:responsive` — passed for both routes at 1440, 768,
+  and 390 pixels, including overflow, self-hosted font, 44px targets, stage
+  switching, initial skip-link focus, invalid-input recovery, success context,
+  back navigation, refresh persistence, and returning state;
+- raw server content proof confirms exactly five stage panels and no stage
+  `hidden` attribute;
+- the one-time Impeccable detector returned `[]`;
+- landing first-viewport, interacted-stage, and targeted unavailable-evidence
+  rasters plus preserved workspace rasters were captured under
+  `.impeccable/review/` and inspected;
+- every generated verification JSON file parses, every Markdown artifact is
+  UTF-8 text, and none of the inspected JSON/Markdown artifacts contains a raw
+  NUL byte;
+- `git diff --check` passed before final truth reconciliation.
+
+The independent finish reviewer returned `fix`. Codex accepted all eight
+findings: durable design documentation; a visible tablet/mobile first-viewport
+protocol; a compact mobile stage navigator; removal of heading kickers;
+display tracking no tighter than `-.04em`; text-only same-tab navigation;
+explicit two-square brand geometry; and 1px/full-boundary callouts. The visual
+repair, same-viewport recapture, and responsive proof passed. The required
+documenter updated `DESIGN.md` and `.impeccable/design.json`; the same reviewer
+scored seven fixes resolved, one stale documentation sentence partial, then
+returned exact disposition `ship` after that sentence was corrected.
+
+No runtime model, provider credential, remote asset, API endpoint, database
+table, market-data feed, recommendation, prediction, or simulated performance
+result was added. The five pre-existing `Docs_*_2026-08-26.md` files remain
+unrelated and unstaged.

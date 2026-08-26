@@ -15,11 +15,15 @@
 5. Complete: modern guided decision workspace with four packs, twelve complete
    fictional lifecycles, editable copy-to-draft, returning-state summary,
    human observation rows, and guided controls for all seven conditions.
-6. Active roadmap successor: hypothetical rebalance simulation.
-7. Optional separately approved product successor: runtime variant generation
+6. Complete: prediction-discipline landing with the typed five-stage
+   Aurora showpiece at `/`, the complete product preserved at `/workspace`,
+   progressive enhancement, responsive evidence, and independent finish
+   review. The aggregate gate passed and the finish reviewer returned `ship`.
+7. Active roadmap successor: hypothetical rebalance simulation.
+8. Optional separately approved product successor: runtime variant generation
    with interchangeable local and OpenRouter adapters, secure credentials,
    provenance, budgets, redaction, and failure-state proof.
-8. Then: outcome history, security, backup, accessibility, and release proof.
-9. Separate research goal: Infrastructure Commitment Ledger pilot.
-10. Optional integration only after the ledger passes its data, attribution,
+9. Then: outcome history, security, backup, accessibility, and release proof.
+10. Separate research goal: Infrastructure Commitment Ledger pilot.
+11. Optional integration only after the ledger passes its data, attribution,
    lead-time, and prospective-value gates.

@@ -154,3 +154,38 @@ Manrope is bundled under its Open Font License and served by the local server
 as the `Decision Sans` variable family; no font CDN or remote asset request is
 allowed. System sans-serif fallbacks remain available if local font loading
 fails.
+
+## 2026-08-26 — Landing and workspace route ownership
+
+The root route is now a persuasive first-use surface, while the complete
+working product moves intact to `/workspace`. Existing `/api/*` and asset
+routes remain unchanged. This separates understanding the product from doing
+personal work without introducing a second application, frontend framework,
+database, or state model.
+
+## 2026-08-26 — Aurora is a showpiece, not a fifth example pack
+
+The Aurora Compute Cycle is one deeply immutable, explicitly fictional
+manifest under `packages/examples/`. It demonstrates Precommit, Observe,
+Converge, Challenge, and Record with unavailable evidence and a bounded
+`defer_review` outcome. It is rendered directly from typed data, never inserted
+into SQLite, never returned as generated model output, and never changes the
+four-pack/twelve-example workspace contract.
+
+## 2026-08-26 — Evidence Theater instead of prediction theater
+
+The landing dramatizes the review protocol rather than fabricating an
+analytics dashboard, probability, calibration result, return, or model score.
+The desktop first viewport pairs the thesis with a protocol trace. Tablet and
+mobile use a compact fictional protocol summary so the mechanism, promise, and
+actions remain together. The stage interaction progressively enhances five
+complete raw-HTML panels; unavailable data, contrary evidence, falsifier
+checks, and human disposition remain visible product facts.
+
+## 2026-08-26 — Provider scope remains deferred
+
+The showpiece and landing add no local-model or OpenRouter adapter. The current
+provider-neutral variant contract and bundled-only workspace disclosure remain
+unchanged. Interchangeable local/OpenRouter runtime generation still requires
+its own approved goal, secure credential handling, provenance, redaction,
+timeout, budget, and failure-state proof.
